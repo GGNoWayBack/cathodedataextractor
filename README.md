@@ -3,7 +3,7 @@
 `Cathodedataextractor` is a lightweight document-level information extraction pipeline that can automatically extract comprehensive properties related to synthesis parameters, cycling and rate performance of cathode materials from the literature of layered cathode materials for sodium-ion batteries.
 ## Features
 
-- It is built on open-source libraries: [pymatgen], [text2chem], and [ChemDataExtractor v2].
+- It is built on open-source libraries: [pymatgen], [text2chem], and [ChemDataExtractor v2] with some modifications.
 
 
 

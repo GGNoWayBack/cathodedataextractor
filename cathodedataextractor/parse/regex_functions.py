@@ -19,7 +19,7 @@ def end_parentheses(cem: str):
     Note: Nax(Cu-Fe-Mn) O2, NaFexCr1-X(SO4)2, etc. with return (None, None).
 
     Returns:
-         (int, str[int:]) or (None, str).
+         (int, str[int:]) or (None, None).
     """
     stack, bracket_index, first_end = [], -1, True
     for i in range(len(cem) - 1, -1, -1):

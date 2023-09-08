@@ -107,6 +107,10 @@ REPLACE = [
     ('。', '. ')
 ]
 
+from word2number.w2n import american_number_system
+
+REPLACE.extend(list(american_number_system.items())[3:-4])
+
 digit = r'(\d+(\.\d+)?)'
 
 SUB = [
@@ -121,19 +125,14 @@ SUB = [
     (digit + r'[ V]+-\s?' + digit + r'\s?V\b', r'\1-\3 V'),
     (r'(?<=\d)\s?V\b(?!\.)', 'V'),
     (r'(?<=\d)\s?V\s?(?=\.)', 'V'),
-    ('first[ -]cycle', '1 cycle'),
-    ('second cycle', '2 cycle'),
-    ('third cycle', '3 cycle'),
-    ('four cycle', '4 cycle'),
-    ('five cycle', '5 cycle'),
-    ('six cycle', '6 cycle'),
-    (r'second\b', '2'),
-    (r'fiftieth\b', '50'),
-    ('ten cycles', '10 cycles'),
     (r'cycled for (\d+) times', r'\1 cycles'),
     (r'\b([\d]+)[ ]*(?:st|rd|nd|th|times)?[ ]*(cycle(?:s)?)\b', r' \1 \2'),
-    (r'( \d+)(?:th|nd|st)(?! cycle)', r'\1'),
+    (r'( \d+)(?:th|nd|st)(?!\s?cycle)', r'\1'),
     ('((?:first|all) three cycles|first, second and third cycle)', '1, 2, and 3 cycle'),
+    (r'first-?(?=\s?cycle)', '1'),
+    (r'second(?=\s?cycle)', '2'),
+    (r'third(?=\s?cycle)', '3'),
+    (r'fiftieth\b', '50'),
     #  Scientific notation
     (r'(\d)\s?,\s?(0\d+ [c°])', r'\1\2'),
     (r'(?<!-|\d)(\d),(\d+\s?mA)', r'\1\2'),
