@@ -109,7 +109,7 @@ REPLACE = [
 
 from word2number.w2n import american_number_system
 
-REPLACE.extend(list(american_number_system.items())[3:-4])
+REPLACE.extend((key, str(value)) for key, value in list(american_number_system.items())[3: -4])
 
 digit = r'(\d+(\.\d+)?)'
 
