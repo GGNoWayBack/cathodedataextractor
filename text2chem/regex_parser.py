@@ -322,15 +322,15 @@ class RegExParser:
         """
         # 2022.11.29  r"\s*[=:]{1}\s*([A-Za-z0-9\+,\s]+)" ----> r"\s*[=:]{1}\s*([A-Za-z0-9\+,/\s]+)"
         re_elements_values = r"\s*[=:]{1}\s*([A-Za-z0-9\+,/\s]+)"
-        values = re.findall(var + re_elements_values, sentence)
-        # 2022.11.29   r"[,\s]" -----> r"[,/\s]"
+
         # 2023.7.4
+        values = re.findall(var + re_elements_values, sentence)
         # values = [c.rstrip(NUMBERS_STR) for v in values for c in re.split(r"[,/\s]", v)
         #           if c.rstrip(NUMBERS_STR) in self._list_of_elements]
-        # return list(set(values))  # 集合去重忽视了文本连续性
+        # return list(set(values))  # Set deduplication ignores text continuity.
 
         fvalues = []
-        for v in values:
+        for v in values:  # 2022.11.29   r"[,\s]" -----> r"[,/\s]"
             for c in re.split(r"[,/\s]", v):
                 c = c.rstrip(NUMBERS_STR)
                 if c not in fvalues and c in self._list_of_elements:
