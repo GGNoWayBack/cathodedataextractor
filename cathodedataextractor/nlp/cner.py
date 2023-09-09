@@ -63,6 +63,7 @@ class CNer:
             for cb in {']', '}', '&gt;'}:
                 text = text.replace(cb, ')')
             return text.replace("'", '').replace('\n', '').replace('--', '-').replace('(<CR>)', '')
+
         cem = normalize(cem)
 
         # Match the most informative bracket at the end and normalize accordingly
@@ -72,23 +73,19 @@ class CNer:
             cem = cem[:bracket_index]
 
         # Remove valence
-        def remove_valence(cem, sign='+', do_remove=True):
-            if do_remove:
-                idx = cem.find(sign)
-                if idx > -1:
-                    do_remove = False
-                    window = cem[idx - 1: idx + 2]
-                    if window and window.index(sign):
-                        if window[-1] in ['x', 'y', 'z', 'δ']:
-                            return remove_valence(cem[:idx + 2], do_remove=do_remove) + \
-                                   remove_valence(cem[idx + 2:])
-                        elif window[0].isdigit():
-                            return remove_valence(cem[:idx - 1], do_remove=do_remove) + \
-                                   remove_valence(cem[idx + 1:])
-                        else:
-                            return remove_valence(cem[:idx], do_remove=do_remove) + \
-                                   remove_valence(+ cem[idx + 1:])
+        def remove_valence(cem, sign='+', start=0):
+            idx = cem.find(sign, start)
+            if idx > -1:
+                window = cem[idx - 1: idx + 2]
+                if window and window.index(sign):
+                    if window[-1] in ['x', 'y', 'z', 'δ']:
+                        return remove_valence(cem, start=idx + 2)
+                    elif window[0].isdigit():
+                        return remove_valence(cem[:idx - 1] + cem[idx + 1:], start=idx - 1)
+                    else:
+                        return remove_valence(cem[:idx] + cem[idx + 1:], start=idx)
             return cem
+
         cem = remove_valence(cem)
 
         def final_processing(cem):
@@ -121,6 +118,7 @@ class CNer:
                     elif any_func(cem, METAL_TYPES["transition_me_4"]):
                         cem = cem.replace(' ', '')
                 return cem
+
         return final_processing(cem) + (' ' + _st if _st else '')
 
     @lru_cache(None)
@@ -224,7 +222,8 @@ class CNer:
                         return 'is_likely_abbreviation'
                     else:
                         return 'raw_material'
-        return 'is_likely_abbreviation' if likely_abb_ or shape in ['XX', 'Xd.d'] and not any_func(cem, ['=', ',']) else 'other'
+        return 'is_likely_abbreviation' if likely_abb_ or shape in ['XX', 'Xd.d'] and not any_func(cem, ['=',
+                                                                                                         ',']) else 'other'
 
     @lru_cache(None)
     def is_compound_formula(self, cem: str, normalize: bool = False) -> Union[bool, Tuple[str, list]]:
@@ -257,7 +256,7 @@ class CNer:
                 for remove in remove_:
                     _cem = _cem.replace(remove, '')
                 ind = _cem.find(')')
-                if ind > -1 and not _cem[ind: ind+2].endswith(tuple(digits)):  # Na0.70Ni0.20Cu0.15Mn(0.65-x)TixO2
+                if ind > -1 and not _cem[ind: ind + 2].endswith(tuple(digits)):  # Na0.70Ni0.20Cu0.15Mn(0.65-x)TixO2
                     _cem = _cem.replace('(', '').replace(')', '')
                 # 'Na0.67(Ni0.3Mn0.5Fe0.2)0.95Zr0.05O2'
                 comp = Composition(_cem)
