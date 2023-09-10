@@ -63,7 +63,7 @@ def data_pprocess(data):
             cca_cra = [data.pop('Cycle_capacity: mAhg-1'), data.pop('Cycle_retention: %')]
             if cca_cra[0][0][0] == 1:
                 cca_cra[0].append([cca_cra[1][0][0], round(cca_cra[1][0][1] * cca_cra[0][0][1] / 100, 1)])
-            elif cca_cra[0][0] == cca_cra[1][0]:  # If the number of cycle is the same,
+            elif cca_cra[0][0][0] == cca_cra[1][0][0]:  # If the number of cycle is the same,
                 # then convert to the first cycle capacity and generate three pieces of data.
                 cca_cra[0].append([1, round(cca_cra[0][0][1] * 100 / cca_cra[1][0][1], 1)])
 
