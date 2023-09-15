@@ -58,7 +58,7 @@ class Pipeline:
                                  abbreviation=abbreviation_detection.new_abbreviation,
                                  stoichiometric_variables_chem=abbreviation_detection.stoichiometric_variables_chem)
 
-        pp: PropertyParse = Pipeline.relation_extract(prep_data)
+        pp: PropertyParse = Pipeline._relation_extract(prep_data)
         for j in pp.results:
             if pp.current_define:
                 j['Current_define'] = pp.current_define
@@ -87,17 +87,17 @@ class Pipeline:
         """
         Paragraph classification.
         """
-        data: PipelineData = self.collect_corpus(head=head, tail=tail)
+        data: PipelineData = self._collect_corpus(head=head, tail=tail)
 
         """
         Text preprocessing and chemical supplementary information extraction (CSIE).
         """
-        prep_data: PipelineData = self.preprocess_csie(data)
+        prep_data: PipelineData = self._preprocess_csie(data)
 
         """
         Named entity recognition (NER) and relation extraction.
         """
-        pp: PropertyParse = self.relation_extract(prep_data)
+        pp: PropertyParse = self._relation_extract(prep_data)
         for j in pp.results:
             if pp.current_define:
                 j['Current_define'] = pp.current_define
@@ -110,7 +110,7 @@ class Pipeline:
                     layer3=pp.results,
                     layer4=final_records)
 
-    def collect_corpus(self, head, tail) -> PipelineData:
+    def _collect_corpus(self, head, tail) -> PipelineData:
 
         TC = TagClassificationPar2Text()
         TC.get_abstract(head=head, tail=tail)
@@ -122,7 +122,7 @@ class Pipeline:
                             pred_labels=self.select_data.get(TC.doi.replace("/", '.'), None))
 
     @staticmethod
-    def preprocess_csie(data: PipelineData) -> PipelineData:
+    def _preprocess_csie(data: PipelineData) -> PipelineData:
         # preprocess
         year, doi, labels, _intro, _experi, _partial_text = data[:6]
 
@@ -148,7 +148,7 @@ class Pipeline:
                             abbreviation_detection.stoichiometric_variables_chem)
 
     @staticmethod
-    def relation_extract(data: PipelineData) -> PropertyParse:
+    def _relation_extract(data: PipelineData) -> PropertyParse:
 
         year, doi, labels, _, exp, property_text, abb_che, stoichiometric_variable = data
 
