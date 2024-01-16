@@ -330,6 +330,9 @@ class AbbreviationDetection:
 
             abb_c = Counter(s for s in abb if s.isupper())
             n = len(abb_c)
+            end_threshold_value = 0
+            if abb.endswith("0"):  # MFT0, Na0.6MnO2
+                end_threshold_value = 2
             for ind, abb_k in enumerate(abb_c, 1):
                 if abb_k != 'O':
                     min_same = min(abb_c[abb_k], cem_c.get(abb_k, 0))
@@ -338,10 +341,10 @@ class AbbreviationDetection:
                     else:  # The uppercase character in an abbreviation must be present in the full name,
                         # and if not must be at the end and longer than 1.
                         # ： 'FMR', 'Na0.67Mn0.5Fe0.5O2'  'NFMCu-0', 'NaMn0.6Fe0.4O2'
-                        if (n == 1) or (ind != n):
+                        if (n == 1) or (ind + end_threshold_value < n):
                             return False
 
-            return True if threshold_value < 1 else False
+            return True if threshold_value <= 1 else False
 
         suffix_pattern = ignore_suffix_pattern.search(abb)
         if suffix_pattern:  # Ignore suffixes.
