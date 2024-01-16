@@ -5,8 +5,6 @@ Error classes for ChemDataExtractor.
 """
 
 
-
-
 class ChemDataExtractorError(Exception):
     """Base ChemDataExtractor exception."""
     pass

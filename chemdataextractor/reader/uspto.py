@@ -3,9 +3,6 @@
 Readers for USPTO patents.
 
 """
-
-
-
 from ..scrape.clean import clean
 #from ..doc.table import Table
 from ..doc.table import Table

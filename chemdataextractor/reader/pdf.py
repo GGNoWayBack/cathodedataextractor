@@ -3,9 +3,6 @@
 PDF document reader.
 
 """
-
-
-
 from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import LAParams, LTTextLine, LTTextBox, LTFigure
 from pdfminer.pdfdocument import PDFDocument

@@ -5,9 +5,6 @@ Units and models for power
 .. codeauthor:: Juraj Mavračić <jm2111@cam.ac.uk>
 
 """
-
-
-
 from .quantity_model import QuantityModel
 from .unit import Unit
 from .dimension import Dimension

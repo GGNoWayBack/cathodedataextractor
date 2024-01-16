@@ -4,8 +4,6 @@ Base types for making quantity models.
 
 :codeauthor: Taketomo Isazawa (ti250@cam.ac.uk)
 """
-
-
 import six
 import copy
 from abc import ABCMeta

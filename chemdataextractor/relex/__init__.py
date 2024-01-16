@@ -8,8 +8,6 @@ This package is still under development, please use it for beta testing only and
 
 cc889
 """
-
-
 import logging
 import os
 from .snowball import Snowball

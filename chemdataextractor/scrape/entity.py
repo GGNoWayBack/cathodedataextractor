@@ -3,8 +3,6 @@
 An entity to extract.
 
 """
-
-
 from collections import Sequence
 import json
 import logging

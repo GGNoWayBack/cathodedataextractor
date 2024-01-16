@@ -13,6 +13,8 @@ class BaseParser(object):
     """"""
     model = None
     trigger_phrase = None
+    skip_section_phrase = None
+    allow_section_phrase = None
     """
     Optional :class:`~chemdataextractor.parse.elements.BaseParserElement` instance.
     All sentences are run through this before the full root phrase is applied to the

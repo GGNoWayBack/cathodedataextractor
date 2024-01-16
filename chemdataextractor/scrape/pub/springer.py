@@ -3,8 +3,6 @@
 Tools for scraping documents from Springer, Biomed Central and Chemistry Central XML files.
 
 """
-
-
 import logging
 
 from ...text.normalize import normalize

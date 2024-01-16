@@ -3,8 +3,6 @@
 Plain text document reader.
 
 """
-
-
 import re
 
 import six

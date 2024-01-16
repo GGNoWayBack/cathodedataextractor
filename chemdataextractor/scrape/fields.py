@@ -3,8 +3,6 @@
 Fields to define on an entity.
 
 """
-
-
 import logging
 import re
 

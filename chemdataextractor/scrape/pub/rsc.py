@@ -3,8 +3,6 @@
 Tools for scraping documents from The Royal Society of Chemistry.
 
 """
-
-
 import logging
 import re
 

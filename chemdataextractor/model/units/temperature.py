@@ -4,9 +4,6 @@ Units and models for temperatures.
 
 :codeauthor: Taketomo Isazawa (ti250@cam.ac.uk)
 """
-
-
-
 import logging
 
 from .quantity_model import QuantityModel, StringType

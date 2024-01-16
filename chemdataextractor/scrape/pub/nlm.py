@@ -3,8 +3,6 @@
 Tools for scraping documents from NLM Journal Archiving and Interchange DTD XML files.
 
 """
-
-
 import logging
 import re
 

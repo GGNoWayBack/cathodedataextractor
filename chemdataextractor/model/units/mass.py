@@ -4,9 +4,6 @@ Units and models for masses.
 
 :codeauthor: Taketomo Isazawa (ti250@cam.ac.uk)
 """
-
-
-
 from .quantity_model import QuantityModel
 from .unit import Unit
 from .dimension import Dimension

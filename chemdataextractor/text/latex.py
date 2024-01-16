@@ -4,8 +4,6 @@
 Tools for converting LaTeX to unicode.
 
 """
-
-
 import re
 import string
 

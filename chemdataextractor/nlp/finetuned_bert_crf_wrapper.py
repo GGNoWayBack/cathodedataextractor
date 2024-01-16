@@ -64,7 +64,6 @@ class _BertCrfTagger(Model):
         If provided, will be used to calculate the regularization penalty during training.
     """
 
-
     def __init__(self, vocab: Vocabulary,
                  text_field_embedder: TextFieldEmbedder,
                  label_namespace: str = "labels",

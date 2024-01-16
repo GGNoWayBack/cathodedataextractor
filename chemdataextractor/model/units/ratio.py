@@ -5,9 +5,6 @@ Units and models for a ratio (percentage).
 .. codeauthor:: Juraj Mavračić <jm2111@cam.ac.uk>
 
 """
-
-
-
 import logging
 
 from .quantity_model import QuantityModel

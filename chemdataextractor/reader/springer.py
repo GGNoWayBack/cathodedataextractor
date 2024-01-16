@@ -5,7 +5,6 @@ Readers for documents from Springer.
 .. codeauthor:: Callum Court
 
 """
-
 from lxml import etree
 import six
 from lxml.html import HTMLParser

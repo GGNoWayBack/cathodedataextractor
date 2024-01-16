@@ -3,9 +3,6 @@
 Readers for NLM Journal Archiving and Interchange DTD XML files. (i.e. from PubMed Central)
 
 """
-
-
-
 from ..scrape.clean import clean
 from ..scrape.pub.nlm import tidy_nlm_references, space_labels
 from .markup import XmlReader

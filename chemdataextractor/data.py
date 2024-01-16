@@ -29,7 +29,7 @@ AUTO_DOWNLOAD = True
 class Package(object):
     """Data package."""
 
-    def __init__(self, path, server_root=None, remote_path=None, unzip=False, untar=False):
+    def __init__(self, path, server_root=None, remote_path=None, unzip=False, untar=False, custom_download=None):
         """
         :param str path: The path to where this package will be located under
             ChemDataExtractor's default data directory.
@@ -41,6 +41,7 @@ class Package(object):
             You should only ever set this or untar to True.
         :param bool (optional) untar: Whether the package should be untarred after download.
             You should only ever set this or unzip to True.
+        :param custom_download:
         """
         self.path = path
         self.server_root = server_root
@@ -49,6 +50,7 @@ class Package(object):
         self._remote_path = remote_path
         self.unzip = unzip
         self.untar = untar
+        self.custom_download = custom_download
 
     @property
     def remote_path(self):
@@ -76,6 +78,12 @@ class Package(object):
         return False
 
     def download(self, force=False):
+        if self.custom_download is not None:
+            self.custom_download(self.local_path, force=force)
+        else:
+            self.default_download(force)
+
+    def default_download(self, force=False):
         """"""
         log.debug('Considering %s', self.remote_path)
         ensure_dir(os.path.dirname(self.local_path))

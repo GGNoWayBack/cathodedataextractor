@@ -36,9 +36,6 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
-
-
-
 from cssselect import GenericTranslator, HTMLTranslator
 from cssselect.xpath import _unicode_safe_getattr, XPathExpr, ExpressionError
 from cssselect.parser import FunctionalPseudoElement

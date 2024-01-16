@@ -14,7 +14,7 @@ import six
 log = logging.getLogger(__name__)
 
 
-def memoized_property(fget) -> property:
+def memoized_property(fget):
     """Decorator to create memoized properties."""
     attr_name = '_{}'.format(fget.__name__)
 

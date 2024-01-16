@@ -3,8 +3,6 @@
 Part-of-speech tagging.
 
 """
-
-
 import logging
 
 from .lexicon import ChemLexicon

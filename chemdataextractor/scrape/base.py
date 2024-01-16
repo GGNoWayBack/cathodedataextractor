@@ -3,8 +3,6 @@
 Abstract base classes that define the interface for Scrapers, Fields, Crawlers, etc.
 
 """
-
-
 from abc import ABCMeta, abstractproperty, abstractmethod
 import logging
 

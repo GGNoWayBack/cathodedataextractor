@@ -3,8 +3,6 @@
 Cache features of previously seen words.
 
 """
-
-
 import logging
 
 import six

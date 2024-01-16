@@ -71,7 +71,6 @@ def _read_chemdner_line_block(stream):
         toks.append(abstract.strip())
     return toks
 
-
 #: Entire WSJ corpus (English News Text Treebank: Penn Treebank Revised, LDC2015T13)
 wsj = LazyCorpusLoader(
     'wsj_training',

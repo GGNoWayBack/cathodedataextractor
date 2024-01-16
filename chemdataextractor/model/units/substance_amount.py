@@ -4,9 +4,6 @@ Units and models for amounts of a substance.
 
 :codeauthor: Callum Court (cc889@cam.ac.uk)
 """
-
-
-
 import logging
 
 from .quantity_model import QuantityModel

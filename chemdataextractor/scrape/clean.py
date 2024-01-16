@@ -3,8 +3,6 @@
 Tools for cleaning up XML/HTML by removing tags entirely or replacing with their contents.
 
 """
-
-
 import copy
 import logging
 import re

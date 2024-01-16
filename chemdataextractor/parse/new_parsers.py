@@ -3,8 +3,6 @@
 Test parsers for the autogeneration scheme
 
 """
-
-
 import logging
 import re
 

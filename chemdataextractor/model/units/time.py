@@ -4,9 +4,6 @@ Units and models for times.
 
 :codeauthor: Taketomo Isazawa (ti250@cam.ac.uk)
 """
-
-
-
 import logging
 
 from .quantity_model import QuantityModel
@@ -129,6 +126,7 @@ class Day(TimeUnit):
 
 
 units_dict = {R('d(ay(s)?)?', group=0): Day, R('y(ear(s)?)?', group=0): Year,
-              R('h(our(s)?)?', group=0): Hour, R('s(econd(s)?)?', group=0): Second}
+              R('h(our(s)?)?', group=0): Hour, R('min(ute)?s?', group=0): Minute,
+              R('s(econd(s)?)?', group=0): Second}
 Time.units_dict = units_dict
 Time.standard_units = Second()

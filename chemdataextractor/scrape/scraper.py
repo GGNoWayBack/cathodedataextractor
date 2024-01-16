@@ -2,8 +2,6 @@
 """
 Concrete classes for scraping and searching.
 """
-
-
 from abc import abstractmethod
 import logging
 
