@@ -107,10 +107,6 @@ REPLACE = [
     ('。', '. ')
 ]
 
-from word2number.w2n import american_number_system
-
-REPLACE.extend((key, str(value)) for key, value in list(american_number_system.items())[3: -4])
-
 digit = r'(\d+(\.\d+)?)'
 
 SUB = [
@@ -141,6 +137,10 @@ SUB = [
     (r'\s{2,3}', ' '),
 
 ]
+
+from word2number.w2n import american_number_system
+
+SUB.extend((key + r"\b", str(value)) for key, value in list(american_number_system.items())[3: -4])
 
 # Conflict Acknowledgements
 c_a_pattern = re.compile(r'Acknowledgements?|References?|Conflicts?|Author', re.I)

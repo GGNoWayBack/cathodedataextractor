@@ -686,7 +686,7 @@ class PropertyParse:
                 res_v = variables[_]
                 break
         if res_v:
-            stoichiometric_values = res_v + r"\s*=\s*([-]{0,1}[0-9\.\,/and\s]+)[\s\)\]\,]"
+            stoichiometric_values = res_v + r"\s*=\s*([-]{0,1}[0-9\.\,/and\sxyz=]+)[\s\)\]\,]"
             res_str = re.search(stoichiometric_values, sentence)
             return (cem + ' (' + res_str.group().rstrip(';:)') + ')', res_v) if res_str else (False, res_v)
         return False, res_v
