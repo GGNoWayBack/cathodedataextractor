@@ -4,10 +4,8 @@ Abstract base classes for document readers.
 """
 from abc import ABCMeta, abstractmethod
 
-import six
 
-
-class BaseReader(six.with_metaclass(ABCMeta)):
+class BaseReader(metaclass=ABCMeta):
     """All Document Readers should implement a parse method."""
 
     def __init__(self):

@@ -3,8 +3,6 @@
 Common parser elements.
 
 """
-
-
 import logging
 import re
 

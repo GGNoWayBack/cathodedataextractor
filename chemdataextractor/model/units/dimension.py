@@ -4,7 +4,6 @@ Base types for dimensions. Refer to the example on :ref:`creating new units and 
 
 .. codeauthor:: Taketomo Isazawa <ti250@cam.ac.uk>
 """
-import six
 import copy
 from abc import ABCMeta
 
@@ -12,13 +11,13 @@ from abc import ABCMeta
 @property
 def standard_units(self):
     if self._standard_units and len(self._standard_units) == 1:
-        for unit, power in six.iteritems(self._standard_units):
+        for unit, power in self._standard_units.items():
             if power == 1.:
                 return unit
             else:
                 return unit ** power
     product_unit = None
-    for (unit, power) in six.iteritems(self._standard_units):
+    for (unit, power) in self._standard_units.items():
         if not product_unit:
             product_unit = unit ** power
         else:
@@ -49,7 +48,7 @@ class _DimensionMeta(ABCMeta):
             return super(_DimensionMeta, cls).__setattr__(key, value)
 
 
-class Dimension(six.with_metaclass(_DimensionMeta)):
+class Dimension(metaclass=_DimensionMeta):
     """
     Class for representing physical dimensions.
     """
@@ -148,7 +147,7 @@ class Dimension(six.with_metaclass(_DimensionMeta)):
             dimensions = {}
 
             if self._dimensions is not None:
-                for dimension, power in six.iteritems(self._dimensions):
+                for dimension, power in self._dimensions.items():
                     dimensions[dimension] = power * other
 
             else:
@@ -159,7 +158,7 @@ class Dimension(six.with_metaclass(_DimensionMeta)):
             new_model.units_dict = copy.copy(self.units_dict)
             if self._standard_units is not None:
                 _standard_units = {}
-                for unit, power in six.iteritems(self._standard_units):
+                for unit, power in self._standard_units.items():
                     _standard_units[unit] = power * other
                 new_model._standard_units = _standard_units
             else:
@@ -178,7 +177,7 @@ class Dimension(six.with_metaclass(_DimensionMeta)):
             dimensions[new_key] = 1.0
 
         if other._dimensions is not None:
-            for key, value in six.iteritems(other._dimensions):
+            for key, value in other._dimensions.items():
                 if self._dimensions is not None and key in self._dimensions.keys():
                     dimensions[key] += value
                     if dimensions[key] == 0:
@@ -237,13 +236,13 @@ class Dimension(six.with_metaclass(_DimensionMeta)):
 
         if self._standard_units is not None and other._standard_units is not None:
             _standard_units = {}
-            for unit, power in six.iteritems(self._standard_units):
+            for unit, power in self._standard_units.items():
                 if unit not in _standard_units.keys():
                     _standard_units[unit] = power
                 else:
                     _standard_units[unit] += power
 
-            for unit, power in six.iteritems(other._standard_units):
+            for unit, power in other._standard_units.items():
                 if unit not in _standard_units.keys():
                     _standard_units[unit] = power
                 else:
@@ -280,7 +279,7 @@ class Dimension(six.with_metaclass(_DimensionMeta)):
         # TODO: Should use the _dimensions as part of the hash as well, but does not seem to work.
         # Can't just hash the dictionary as that would lead to two units that are actually equal hashing to different values depending on the order in which the dictionary is iterated through, which is not neccesarily deterministic. Better to have it this way, as it's okay for two hashes to clash.
         # if self._dimensions is not None:
-        #     for key in sorted(str(six.iteritems(self._dimensions))):
+        #     for key in sorted(str(self._dimensions.items())):
         #         string += (str(key))
         return string.__hash__()
 
@@ -288,7 +287,7 @@ class Dimension(six.with_metaclass(_DimensionMeta)):
         string = ''
         if self._dimensions is not None:
             name_list = []
-            for key, value in six.iteritems(self._dimensions):
+            for key, value in self._dimensions.items():
                 name_list.append((type(key).__name__ + '^(' + str(value) + ')  '))
             for name in sorted(name_list):
                 string += name

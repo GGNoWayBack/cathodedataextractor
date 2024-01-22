@@ -8,8 +8,6 @@ included in new_cem.
 import logging
 import re
 
-import six
-
 from ..text import bracket_level
 from .lexicon import ChemLexicon
 from .tag import EnsembleTagger, CrfTagger, DictionaryTagger, NER_TAG_TYPE, POS_TAG_TYPE
@@ -714,5 +712,5 @@ class LegacyCemTagger(EnsembleTagger):
                             if re.match('^(\d{1,2}[A-Za-z]?|I|II|III|IV|V|VI|VII|VIII|IX)$', entity_tokens[-2]):
                                 log.debug('Removing %s from end of CEM', entity_tokens[-2])
                                 tags[end_i - 3:end_i] = [None, None, None]
-        tokentags = list(six.moves.zip(tokens, tags))
+        tokentags = list(zip(tokens, tags))
         return tokentags

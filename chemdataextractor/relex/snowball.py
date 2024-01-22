@@ -10,7 +10,6 @@ from collections import OrderedDict
 from itertools import combinations
 
 import numpy as np
-import six
 import pprint
 from ..doc.document import Document, Paragraph
 from ..model.base import BaseModel
@@ -137,30 +136,30 @@ class Snowball(BaseSentenceParser):
 
         with io.open(save_dir + self.save_file_name + '_clusters.txt', 'w+', encoding='utf-8') as f:
             s = "Cluster set contains " + \
-                six.text_type(len(self.clusters)) + " clusters."
+                str(len(self.clusters)) + " clusters."
             f.write(s + "\n")
             for c in self.clusters:
-                s = "Cluster " + six.text_type(c.label) + " contains " + six.text_type(
+                s = "Cluster " + str(c.label) + " contains " + str(
                     len(c.phrases)) + " phrases"
                 f.write(s + "\n")
                 for phrase in c.phrases:
                     f.write("\t " + phrase.full_sentence + "\n")
                 f.write(u"The cluster centroid pattern is: ")
                 p = c.pattern
-                f.write(six.text_type(p.to_string()) +
-                        " with confidence score " + six.text_type(p.confidence) + "\n")
+                f.write(p.to_string() +
+                        " with confidence score " + str(p.confidence) + "\n")
 
         with io.open(save_dir + self.save_file_name + '_patterns.txt', 'w+', encoding='utf-8') as f:
             for c in self.clusters:
                 p = c.pattern
-                f.write(six.text_type(p.to_string()) +
+                f.write(str(p.to_string()) +
                         " with confidence score " + str(p.confidence) + "\n\n")
 
         with io.open(save_dir + self.save_file_name + '_relations.txt', 'w+', encoding='utf-8') as wf:
             for c in self.clusters:
                 for phrase in c.phrases:
                     for relation in phrase.relations:
-                        wf.write(six.text_type(relation) + " Confidence:  " + six.text_type(relation.confidence) + '\n')
+                        wf.write(str(relation) + " Confidence:  " + str(relation.confidence) + '\n')
 
         return
 
@@ -251,7 +250,7 @@ class Snowball(BaseSentenceParser):
             if self.play_sound:
                 sound_file = pkg_resources.resource_filename('chemdataextractor', 'eval/sound.mp3')
                 playsound(sound_file)
-            res = six.moves.input("...: ").replace(' ', '')
+            res = input("...: ").replace(' ', '')
             if res:
                 chosen_candidate_idx = res.split(',')
                 chosen_candidates = []
@@ -580,7 +579,7 @@ class Snowball(BaseSentenceParser):
                 return None
 
             field_data = {}
-            for subfield_name, subfield in six.iteritems(field.model_class.fields):  # compound, names
+            for subfield_name, subfield in field.model_class.fields.items():  # compound, names
                 data = self._get_data(subfield_name, subfield, field_result)
                 if data is not None:
                     field_data.update(data)
@@ -675,7 +674,7 @@ class Snowball(BaseSentenceParser):
                 raw_value = relation_data[model_name]['raw_value']
                 model_data.update({"raw_value": raw_value})
 
-            for field_name, field in six.iteritems(model.fields):
+            for field_name, field in model.fields.items():
                 if field_name not in ['raw_value', 'raw_units', 'value', 'units', 'error', 'specifier', 'confidence']:
                     try:
                         data = self._get_data(field_name, field, relation_data)

@@ -3,14 +3,12 @@
 Extraction pattern object
 """
 import copy
-import six
 from ..parse import Group, join
 
 class Entity(object):
     """A base entity, the fundamental unit of a Relation
 
     """
-
 
     def __init__(self, text, tag, parse_expression, start ,end):
         """Create a new Entity
@@ -22,7 +20,7 @@ class Entity(object):
             start {int} -- The index of the Entity in tokens
             end {int} -- The end index of the entity in tokens
         """
-        self.text = six.text_type(text)
+        self.text = text
         self.tag = tag
         self.parse_expression = copy.copy(parse_expression)
         self.parse_expression.set_name(None)

@@ -11,8 +11,6 @@ import logging
 import math
 from pprint import pprint
 
-import six
-
 from ..parse.elements import Any, W, I
 from ..parse.auto import AutoSentenceParser, AutoTableParser
 from .confidence_pooling import min_value
@@ -21,7 +19,7 @@ from .contextual_range import DocumentRange, SentenceRange
 log = logging.getLogger(__name__)
 
 
-class BaseType(six.with_metaclass(ABCMeta)):
+class BaseType(metaclass=ABCMeta):
 
     # This is assigned by ModelMeta to match the attribute on the Model
     name = None
@@ -118,7 +116,7 @@ class StringType(BaseType):
 
     def process(self, value):
         """Convert value to a unicode string. Useful in case lxml _ElementUnicodeResult are passed from parser."""
-        return six.text_type(value) if value is not None else None
+        return value if value is not None else None
 
     def is_empty(self, value):
         if value is not None and isinstance(value, str) and value:
@@ -291,12 +289,12 @@ class ModelMeta(ABCMeta):
         cls = super(ModelMeta, mcs).__new__(mcs, name, bases, attrs)
         fields = {}
         for base in bases:
-            for field_name, field in six.iteritems(base.fields):
+            for field_name, field in base.fields.items():
                 fields[field_name] = copy.copy(field)
-        for attr_name, attr_value in six.iteritems(attrs):
+        for attr_name, attr_value in attrs.items():
             if isinstance(attr_value, BaseType):
                 # Set the name attribute on the Type to the attribute name on the Model
-                attr_value.name = six.text_type(attr_name)
+                attr_value.name = attr_name
                 fields[attr_name] = attr_value
         cls.fields = fields
         parsers = []
@@ -309,7 +307,7 @@ class ModelMeta(ABCMeta):
 
     def __setattr__(cls, key, value):
         if isinstance(value, BaseType):
-            value.name = six.text_type(key)
+            value.name = key
             cls.fields[key] = value
         return super(ModelMeta, cls).__setattr__(key, value)
 
@@ -327,7 +325,7 @@ class ModelMeta(ABCMeta):
         return output
 
 
-class BaseModel(six.with_metaclass(ModelMeta)):
+class BaseModel(metaclass=ModelMeta):
     """
     A base class for representing a model within ChemDataExtractor.
     Each model can have a number of fields that are declared with the class::
@@ -368,10 +366,10 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         """"""
         self._values = {}
         self._confidences = {}
-        for key, value in six.iteritems(raw_data):
+        for key, value in raw_data.items():
             setattr(self, key, value)
         # Set defaults
-        for key, field in six.iteritems(self.fields):
+        for key, field in self.fields.items():
             if key not in raw_data:
                 setattr(self, key, copy.copy(field.default))
         self._record_method = None
@@ -611,7 +609,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         """
         Reset all updatable parse_expressions of properties associated with the class.
         """
-        for key, field in six.iteritems(cls.fields):
+        for key, field in cls.fields.items():
             if cls.fields[key].updatable:
                 cls.fields[key].reset()
                 cls._updated = False
@@ -642,7 +640,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         """
         True/False dependent on if a specifier within the model was updated.
         """
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             if hasattr(field, 'model_class'):
                 if hasattr(self[field_name], 'updated') and self[field_name].was_updated:
                     return True
@@ -669,7 +667,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         :rtype: bool
         """
 
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             if hasattr(field, 'model_class'):
                 if self[field_name] == field.default and field.contextual:
                     return False
@@ -704,7 +702,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         return self._required_fulfilled(strict=False)
 
     def _required_fulfilled(self, strict):
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             if hasattr(field, 'model_class'):
                 if self[field_name] == field.default \
                    and field.required and math.isclose(field.requiredness, 1.0):
@@ -770,7 +768,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         """
         if type(self) != type(other):
             return False
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             # Method works recursively so it works with nested models
             if hasattr(field, 'model_class'):
                 if not self[field_name]:
@@ -843,7 +841,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
                     # If the type of the other is not part of the flattened model,
                     # no point trying to merge
                     return False
-                for field_name, field in six.iteritems(self.fields):
+                for field_name, field in self.fields.items():
                     if hasattr(field, 'field') and hasattr(field.field, 'model_class') and isinstance(other, field.field.model_class):
                         log.debug('model class list case')
                         # Basic merging in of lists/sets of models by just creating a list with one element
@@ -875,7 +873,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
                             did_merge = True
             # Case when merging two records of the same type
             elif self._compatible(other):
-                for field_name, field in six.iteritems(self.fields):
+                for field_name, field in self.fields.items():
                     if (field.contextual
                        and not field.never_merge
                        and not self[field_name]
@@ -928,7 +926,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
                     # If the type of the other is not part of the flattened model,
                     # no point trying to merge
                     return False
-                for field_name, field in six.iteritems(self.fields):
+                for field_name, field in self.fields.items():
                     if hasattr(field, 'field') and hasattr(field.field, 'model_class') and isinstance(other, field.field.model_class) and not field.never_merge:
                         log.debug('model list case')
                         if self[field_name]:
@@ -951,7 +949,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
                             self[field_name] = copy.copy(other)
                             did_merge = True
             elif self._compatible(other):
-                for field_name, field in six.iteritems(self.fields):
+                for field_name, field in self.fields.items():
                     if (not self[field_name] and other.get(field_name, None) and not field.never_merge):
                         did_merge = True
                         self[field_name] = other[field_name]
@@ -983,7 +981,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         if type(other) == type(self):
             # Check if the other seems to be describing the same thing as self.
             match = True
-            for field_name, field in six.iteritems(self.fields):
+            for field_name, field in self.fields.items():
                 if isinstance(field, ModelType):
                     if (not field.ignore_when_merging
                     and self[field_name] is not None
@@ -1010,7 +1008,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         if type(other) == type(self):
             # Check if the other seems to be describing the same thing as self.
             match = True
-            for field_name, field in six.iteritems(self.fields):
+            for field_name, field in self.fields.items():
                 if (not field.ignore_when_merging
                   and self[field_name] is not None
                   and other[field_name] is not None
@@ -1023,7 +1021,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         should_keep_both = False
         if type(other) == type(self):
             # Check if the other seems to be describing the same thing as self.
-            for field_name, field in six.iteritems(self.fields):
+            for field_name, field in self.fields.items():
                 if isinstance(field, ModelType):
                     if (field.ignore_when_merging
                     and self[field_name] is not None
@@ -1065,7 +1063,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         :rtype: set(BaseModel)
         """
         model_set = {cls}
-        for field_name, field in six.iteritems(cls.fields):
+        for field_name, field in cls.fields.items():
             while hasattr(field, 'field') and (include_inferred or not isinstance(field, InferredProperty)):
                 if hasattr(field, 'model_class'):
                     model_set.update(field.model_class.flatten(include_inferred=include_inferred))
@@ -1104,7 +1102,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         :rtype: set(BaseModel instances)
         """
         subrecords_set = {self}
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             while hasattr(field, 'field') and (include_inferred or not isinstance(field, InferredProperty)):
                 if hasattr(field, 'model_class'):
                     break
@@ -1132,7 +1130,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         :rtype: {str: Any}
         """
         binding_properties = {}
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             if field.binding and self[field_name]:
                 binding_properties[field_name] = self[field_name]
         return binding_properties
@@ -1154,13 +1152,13 @@ class BaseModel(six.with_metaclass(ModelMeta)):
             return True
 
         if type(other) == type(self):
-            for field_name, field in six.iteritems(binding_properties):
+            for field_name, field in binding_properties.items():
                 if other[field_name] != binding_properties[field_name]:
                     return False
         elif not other:
             pass
         else:
-            for field_name, field in six.iteritems(other.fields):
+            for field_name, field in other.fields.items():
                 if field_name in binding_properties:
                     if other[field_name]:
                         if not (binding_properties[field_name].is_superset(other[field_name]) or
@@ -1177,7 +1175,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
             binding_properties = self.binding_properties
         if binding_properties == {}:
             return
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             if field_name in binding_properties:
                 self[field_name] = binding_properties[field_name]
             elif hasattr(field, 'model_class') and self[field_name]:
@@ -1203,7 +1201,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
         clean_contextual determines whether contextual fields that are unfulfilled are
         removed or not.
         """
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             if hasattr(field, 'model_class') and self[field_name]:
                 self[field_name]._clean(clean_contextual=clean_contextual)
                 if clean_contextual:
@@ -1216,7 +1214,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
     @classmethod
     def _all_keypaths(cls, include_model_lists=True):
         all_keypaths = []
-        for field_name, field in six.iteritems(cls.fields):
+        for field_name, field in cls.fields.items():
             if include_model_lists:
                 while hasattr(field, 'field'):
                     field = field.field
@@ -1230,7 +1228,7 @@ class BaseModel(six.with_metaclass(ModelMeta)):
 
     @property
     def is_empty(self):
-        for field_name, field_type in six.iteritems(self.fields):
+        for field_name, field_type in self.fields.items():
             if not field_type.is_empty(self[field_name]):
                 return False
         return True
@@ -1291,7 +1289,7 @@ class ModelList(MutableSequence):
             else:
                 typed_list[type(element)] = [element]
         new_models = []
-        for _, elements in six.iteritems(typed_list):
+        for _, elements in typed_list.items():
             i = 0
             elements.sort(key=lambda el: el.total_confidence(_account_for_merging=True) if el.total_confidence(_account_for_merging=True) is not None else -10000,
                           reverse=True)
@@ -1337,6 +1335,6 @@ def sort_merge_candidates(merge_candidates, adjust_by_confidence=True):
     # merge_candidates is a list of tuples (distance, merge candidate)
     if adjust_by_confidence:
         return sorted(merge_candidates,
-            key=lambda x: x[0] / (x[1].total_confidence() + 0.01) if x[1].total_confidence() is not None else x[0])
+                      key=lambda x: x[0] / (x[1].total_confidence() + 0.01) if x[1].total_confidence() is not None else x[0])
     else:
-        return sorted(merge_candidates, lambda x: x[0])
+        return sorted(merge_candidates, key=lambda x: x[0])

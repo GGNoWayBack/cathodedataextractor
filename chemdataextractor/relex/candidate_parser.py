@@ -5,7 +5,6 @@ Parser for automatic parsing, without user-written parsing rules for finding Sno
 
 """
 import logging
-import six
 import copy
 
 from ..parse.cem import cem, chemical_label, lenient_chemical_label

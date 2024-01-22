@@ -5,8 +5,6 @@ New and improved named entity recognition (NER) for Chemical entity mentions (CE
 import logging
 import re
 
-import six
-
 from ..data import find_data
 from .finetuned_bert_crf_wrapper import _BertCrfTagger
 from .tag import EnsembleTagger, NER_TAG_TYPE

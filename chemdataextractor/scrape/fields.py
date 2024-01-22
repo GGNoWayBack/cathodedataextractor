@@ -7,7 +7,6 @@ import logging
 import re
 
 import dateutil.parser
-import six
 
 from .base import BaseField
 from ..text.processors import strip_querystring
@@ -109,8 +108,8 @@ class BoolField(BaseField):
         :param true: Regular expression match that evaluates to True.
         :param false: Regular expression match that evaluates to False.
         """
-        self.true = re.compile(true, re.U) if isinstance(true, six.string_types) else true
-        self.false = re.compile(false, re.U) if isinstance(false, six.string_types) else false
+        self.true = re.compile(true, re.U) if isinstance(true, str) else true
+        self.false = re.compile(false, re.U) if isinstance(false, str) else false
         super(BoolField, self).__init__(selection, **kwargs)
 
     def process(self, value):
@@ -139,4 +138,4 @@ class DateTimeField(BaseField):
             return None
 
     def serialize(self, value):
-        return six.text_type(value.isoformat())
+        return value.isoformat()

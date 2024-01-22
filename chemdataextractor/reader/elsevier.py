@@ -8,7 +8,6 @@ Elsevier XML reader
 Readers for Elsevier XML files.
 
 """
-import six
 from ..scrape.clean import clean, Cleaner
 from ..doc.table import Cell, Table
 from ..doc.text import Caption
@@ -39,7 +38,7 @@ def fix_elsevier_xml_whitespace(document):
         if parent is None:
             continue
         # Append the text to previous tail (or parent text if no previous), ensuring newline if block level
-        if el.text and isinstance(el.tag, six.string_types):
+        if el.text and isinstance(el.tag, str):
             if previous is None:
                 if parent.text:
                     if parent.text.endswith(' '):
