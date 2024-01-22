@@ -7,8 +7,6 @@ from collections import Sequence
 import json
 import logging
 
-import six
-
 from .base import BaseEntity, EntityMeta
 from .fields import StringField, DateTimeField, UrlField
 from ..text.normalize import normalize
@@ -17,7 +15,7 @@ from ..text.normalize import normalize
 log = logging.getLogger(__name__)
 
 
-class Entity(six.with_metaclass(EntityMeta, BaseEntity)):
+class Entity(BaseEntity, metaclass=EntityMeta):
 
     fields = {}
 
@@ -28,7 +26,7 @@ class Entity(six.with_metaclass(EntityMeta, BaseEntity)):
         """
         self._values = {}
         # Iterate all defined fields
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             # Scrape field values from selector
             cleaner = getattr(self, 'clean_%s' % field_name, None)
             processor = getattr(self, 'process_%s' % field_name, None)

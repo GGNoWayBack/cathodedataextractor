@@ -3,20 +3,18 @@
 Text processors.
 
 """
-
-
 from abc import ABCMeta, abstractmethod
 import logging
 import re
+import urllib
 
-import six
 from . import EMAIL_RE, APOSTROPHES
 
 
 log = logging.getLogger(__name__)
 
 
-class BaseProcessor(six.with_metaclass(ABCMeta)):
+class BaseProcessor(metaclass=ABCMeta):
     """Abstract processor class from which all processors inherit. Subclasses must implement a ``__call__()`` method."""
 
     @abstractmethod
@@ -119,7 +117,7 @@ def floats(s):
 
 def strip_querystring(url):
     """Remove the querystring from the end of a URL."""
-    p = six.moves.urllib.parse.urlparse(url)
+    p = urllib.parse.urlparse(url)
     return p.scheme + "://" + p.netloc + p.path
 
 
@@ -136,7 +134,7 @@ class Substitutor(object):
         """
         self.substitutions = []
         for pattern, replacement in substitutions:
-            if isinstance(pattern, six.string_types):
+            if isinstance(pattern, str):
                 pattern = re.compile(pattern, re.I | re.U)
             self.substitutions.append((pattern, replacement))
 

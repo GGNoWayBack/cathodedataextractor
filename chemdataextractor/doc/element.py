@@ -7,13 +7,11 @@ from abc import ABCMeta, abstractmethod
 import json
 import operator
 
-import six
-
 import logging
 log = logging.getLogger(__name__)
 
 
-class BaseElement(six.with_metaclass(ABCMeta)):
+class BaseElement(metaclass=ABCMeta):
     """
     Abstract base class for a Document Element.
 

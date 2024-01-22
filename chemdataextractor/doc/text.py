@@ -11,8 +11,6 @@ from pprint import pprint
 from deprecation import deprecated
 import unicodedata
 
-import six
-
 from ..model.base import ModelList, sort_merge_candidates
 from ..nlp.lexicon import ChemLexicon, Lexicon
 from ..nlp.cem import IGNORE_PREFIX, IGNORE_SUFFIX, SPECIALS, SPLITS, CiDictCemTagger, CsDictCemTagger, CrfCemTagger
@@ -72,7 +70,7 @@ class BaseText(BaseElement):
             inside a :class:`~chemdataextractor.doc.text.Paragraph`), or is part of a :class:`~chemdataextractor.doc.document.Document`,
             this is set automatically to be the same as that of the containing element, unless manually set otherwise.
         """
-        if not isinstance(text, six.text_type):
+        if not isinstance(text, str):
             raise TypeError('Text must be a unicode string')
         super(BaseText, self).__init__(**kwargs)
         self._text = text

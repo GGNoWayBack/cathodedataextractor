@@ -4,8 +4,6 @@ Base types for making units. Refer to the example on :ref:`creating new units an
 
 .. codeauthor:: Taketomo Isazawa <ti250@cam.ac.uk>
 """
-
-import six
 import copy
 from .dimension import Dimensionless
 from ..base import BaseType
@@ -97,8 +95,7 @@ class MetaUnit(type):
         return cls
 
 
-@six.add_metaclass(MetaUnit)
-class Unit(object):
+class Unit(metaclass=MetaUnit):
     """
     Object represeting units. Implement subclasses of this for basic units.
     Units like meters, seconds, and Kelvins are already implemented in ChemDataExtractor.
@@ -174,7 +171,7 @@ class Unit(object):
 
         :param float value: The value to convert to standard units
         """
-        for unit, power in six.iteritems(self.powers):
+        for unit, power in self.powers.items():
             value = unit.convert_value_to_standard(value**(1 / power))**power
         return value
 
@@ -185,7 +182,7 @@ class Unit(object):
 
         :param float value: The value to convert from standard units
         """
-        for unit, power in six.iteritems(self.powers):
+        for unit, power in self.powers.items():
             value = unit.convert_value_from_standard(value**(1 / power))**power
         return value
 
@@ -198,7 +195,7 @@ class Unit(object):
         :return float error: The error converted to standard units:
         """
 
-        for unit, power in six.iteritems(self.powers):
+        for unit, power in self.powers.items():
             error = unit.convert_error_to_standard(error**(1 / power))**power
         return error
 
@@ -211,7 +208,7 @@ class Unit(object):
         :return float error: The error converted from standard units:
         """
 
-        for unit, power in six.iteritems(self.powers):
+        for unit, power in self.powers.items():
             error = unit.convert_error_from_standard(error**(1 / power))**power
         return error
 
@@ -236,7 +233,7 @@ class Unit(object):
 
         powers = {}
         if self.powers:
-            for key, value in six.iteritems(self.powers):
+            for key, value in self.powers.items():
                 powers[key] = self.powers[key] * other
         else:
             new_key = copy.deepcopy(self)
@@ -255,7 +252,7 @@ class Unit(object):
         magnitude = self.magnitude + other.magnitude
 
         if self.powers:
-            for key, value in six.iteritems(self.powers):
+            for key, value in self.powers.items():
                 powers[key] = self.powers[key]
                 normalised_key = copy.deepcopy(key)
                 normalised_key.magnitude = 0.0
@@ -269,7 +266,7 @@ class Unit(object):
                 normalised_values[new_key] = self.magnitude
 
         if other.powers:
-            for key, value in six.iteritems(other.powers):
+            for key, value in other.powers.items():
                 normalised_key = copy.deepcopy(key)
                 normalised_key.magnitude = 0.0
                 if normalised_key in normalised_values.keys():
@@ -322,7 +319,7 @@ class Unit(object):
         # TODO: Should use the powers as part of the hash as well, but does not seem to work.
         # Can't just hash the dictionary as that would lead to two units that are actually equal hashing to different values depending on the order in which the dictionary is iterated through, which is not neccesarily deterministic. Better to have it this way, as it's okay for two hashes to clash.
         # if self.powers is not None:
-        #     for key in sorted(str(six.iteritems(self.powers))):
+        #     for key in sorted(str(self.powers.items())):
         #         string += str(key)
         return string.__hash__()
 
@@ -332,7 +329,7 @@ class Unit(object):
             string += '(10^' + str(self.magnitude) + ') * '
         name_list = []
         if self.powers is not None:
-            for key, value in six.iteritems(self.powers):
+            for key, value in self.powers.items():
                 name_list.append((type(key).__name__ + '^(' + str(value) + ')  '))
             for name in sorted(name_list):
                 string += name
@@ -349,9 +346,7 @@ class DimensionlessUnit(Unit):
         """
         :param float magnitude: The magnitude of the unit.
         """
-        self.dimensions = Dimensionless()
-        self.magnitude = magnitude
-        self.powers = None
+        super().__init__(Dimensionless(), magnitude)
 
     def convert_to_standard(self, value):
         return value

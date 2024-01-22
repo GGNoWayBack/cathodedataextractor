@@ -6,7 +6,6 @@ Readers for documents from Springer.
 
 """
 from lxml import etree
-import six
 from lxml.html import HTMLParser
 from ..text import get_encoding
 from .markup import HtmlReader, XmlReader

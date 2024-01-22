@@ -9,7 +9,6 @@ import json
 import logging
 
 import click
-import six
 
 from .. import __version__
 from ..doc import Document
@@ -55,7 +54,7 @@ def read(ctx, input, output):
     log.info('Reading %s' % input.name)
     doc = Document.from_file(input)
     for element in doc.elements:
-        output.write(u'%s : %s\n=====\n' % (element.__class__.__name__, six.text_type(element)))
+        output.write(u'%s : %s\n=====\n' % (element.__class__.__name__, element))
 
 
 from . import cluster, config, data, tokenize, pos, chemdner, cem, dict, evaluate

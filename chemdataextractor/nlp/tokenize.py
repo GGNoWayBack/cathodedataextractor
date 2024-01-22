@@ -8,8 +8,6 @@ from deprecation import deprecated
 import logging
 import re
 
-import six
-
 from ..text import bracket_level, GREEK
 from ..data import load_model, find_data
 
@@ -20,7 +18,7 @@ from tokenizers import BertWordPieceTokenizer
 log = logging.getLogger(__name__)
 
 
-class BaseTokenizer(six.with_metaclass(ABCMeta)):
+class BaseTokenizer(metaclass=ABCMeta):
     """Abstract base class from which all Tokenizer classes inherit.
 
     Subclasses must implement a ``span_tokenize(text)`` method that returns a list of integer offset tuples that
@@ -331,7 +329,7 @@ class WordTokenizer(BaseTokenizer):
                     groups = split_text.groupdict()
                     groups = {_: groups[_] for _ in groups if groups[_] is not None}
                     groupindex = split_text.re.groupindex
-                    for group_name, group in six.iteritems(groups):
+                    for group_name, group in groups.items():
                         if group is not None:
                             regs = split_text.regs[groupindex[group_name]]
                             index = regs[0]

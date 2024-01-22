@@ -4,7 +4,6 @@ Base types for making quantity models.
 
 :codeauthor: Taketomo Isazawa (ti250@cam.ac.uk)
 """
-import six
 import copy
 from abc import ABCMeta
 from ..base import BaseModel, BaseType, FloatType, StringType, ListType, ModelMeta, InferredProperty
@@ -28,7 +27,7 @@ class _QuantityModelMeta(ModelMeta):
         return cls
 
 
-class QuantityModel(six.with_metaclass(_QuantityModelMeta, BaseModel)):
+class QuantityModel(BaseModel, metaclass=_QuantityModelMeta):
     """
     Class for modelling quantities. Subclasses of this model can be used in conjunction with Autoparsers to extract properties
     with zero human intervention. However, they must be constructed in a certain way for them to work optimally with autoparsers.
@@ -260,7 +259,7 @@ class QuantityModel(six.with_metaclass(_QuantityModelMeta, BaseModel)):
     def is_superset(self, other):
         if type(self) != type(other):
             return False
-        for field_name, field in six.iteritems(self.fields):
+        for field_name, field in self.fields.items():
             # Method works recursively so it works with nested models
             if hasattr(field, 'model_class'):
                 if self[field_name] is None:
@@ -283,7 +282,7 @@ class QuantityModel(six.with_metaclass(_QuantityModelMeta, BaseModel)):
         if type(other) == type(self):
             # Check if the other seems to be describing the same thing as self.
             match = True
-            for field_name, field in six.iteritems(self.fields):
+            for field_name, field in self.fields.items():
                 if (field_name == 'raw_value' and other[field_name] == 'NoValue'
                     and self[field_name] is not None):
                     pass

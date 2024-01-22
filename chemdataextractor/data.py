@@ -7,9 +7,9 @@ import io
 import logging
 import os
 
+import pickle
 import appdirs
 import requests
-import six
 import zipfile
 import tarfile
 import os
@@ -161,7 +161,7 @@ def load_model(path):
     log.debug('Loading model %s' % path)
     try:
         with io.open(abspath, 'rb') as f:
-            model = six.moves.cPickle.load(f)
+            model = pickle.load(f)
     except IOError:
         raise ModelNotFoundError('Could not load %s. Have you run `cde data download`?' % path)
     _model_cache[abspath] = model
