@@ -77,7 +77,6 @@ doping_label_1 = default_cem_factory.doping_label_1
 doping_label_2 = default_cem_factory.doping_label_2
 
 doped_chemical_label = default_cem_factory.doped_chemical_label
-chemical_label_phrase = default_cem_factory.chemical_label_phrase
 
 informal_chemical_symbol = default_cem_factory.informal_chemical_symbol
 

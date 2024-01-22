@@ -2,7 +2,6 @@
 """
 Parsers for generic specifier definitions
 """
-
 import logging
 
 from .common import lbrct, dt, rbrct, delim

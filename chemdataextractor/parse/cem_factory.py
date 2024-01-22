@@ -4,11 +4,6 @@ A factory class for making Chemical entity mention parser elements to make overr
 ..codeauthor:: Taketomo Isazawa (ti250@cam.ac.uk)
 
 """
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 from abc import abstractproperty, abstractmethod
 import logging
 import re
@@ -88,7 +83,7 @@ class _CemFactory:
                                                 Not(self.label_blocklist) + (self.alphanumeric | roman_numeral | self.letter_number | self.prefixed_label)('labels'))
 
         self.lenient_chemical_label = kwargs.get("lenient_chemical_label",
-                                            self.numeric('labels') | Every([R(r'^([A-Z]\d{1,3})$'), Not(bcm | icm)])('labels') | self.strict_chemical_label)
+                                                 self.numeric('labels') | Every([R(r'^([A-Z]\d{1,3})$'), Not(bcm | icm)])('labels') | self.strict_chemical_label)
 
         self.very_lenient_chemical_label = kwargs.get("very_lenient_chemical_label",
                                                       self.lenient_numeric('labels') | R(r'^([A-Z]\d{1,3})$')('labels') | self.strict_chemical_label)
@@ -111,7 +106,6 @@ class _CemFactory:
         self.doped_chemical_identifier = kwargs.get("doped_chemical_identifier", (W('x') | W('y')))
         self.doping_value = kwargs.get("doping_value", R(r'^(\d\.?)+$'))
         self.doping_range = kwargs.get("doping_range", (self.doping_value + (T('HYPH', tag_type="pos_tag") | I('to')) + self.doping_value))
-
 
         self.doping_label_1 = kwargs.get("doping_label_1",
                                          (self.doping_value + R(r'^\<$') + self.doped_chemical_identifier + R(r'^\<$') + self.doping_value))
