@@ -3,8 +3,6 @@
 XML and HTML readers based on lxml.
 
 """
-
-
 import logging
 from abc import abstractmethod, ABCMeta
 from collections import defaultdict
@@ -121,12 +119,14 @@ class LxmlReader(BaseReader, metaclass=ABCMeta):
                 final_elements.append(element)
         return final_elements
 
-    def _parse_text(self, el, refs=None, specials=None, element_cls=Paragraph):
+    def _parse_text(self, el, refs=None, specials=None, element_cls=None):
         """Like _parse_element but ensure a single element."""
         if specials is None:
             specials = {}
         if refs is None:
             refs = {}
+        if element_cls is None:
+            element_cls = Paragraph
         elements = self._parse_element_r(el, specials=specials, refs=refs, element_cls=element_cls)
         # This occurs if the input element is self-closing... (some table td in NLM XML)
         if not elements:

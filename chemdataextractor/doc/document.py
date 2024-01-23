@@ -720,8 +720,8 @@ class Document(BaseDocument):
         try:
             index_a = self.elements.index(element_a)
             index_b = self.elements.index(element_b)
-        except ValueError as e:
-            raise ValueError(f"Elements {index_a} and {index_b} not in elements for this document")
+        except ValueError:
+            raise ValueError(f"Elements `index_a` and `index_b` not in elements for this document")
         if index_a == index_b:
             return SentenceRange()
         if index_a > index_b:

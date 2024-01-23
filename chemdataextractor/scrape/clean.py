@@ -89,6 +89,22 @@ class Cleaner(object):
                     else:
                         previous.tail = (previous.tail or '') + '\n'
 
+        # Collect all the allowed elements
+        to_keep = [el for el in doc.xpath(self.allow_xpath, namespaces=self.namespaces)] if self.allow_xpath else []
+
+        # Process xpaths
+        if self.process_xpaths:
+            for xpath, func in self.process_xpaths.items():
+                for el in doc.xpath(xpath, namespaces=self.namespaces):
+                    parent = el.getparent()
+                    if parent is None or el in to_keep:
+                        continue
+                    new_element = func(el)
+                    if new_element is None:
+                        el.clear(keep_tail=True)
+                    else:
+                        parent.replace(el, func(el))
+
         # Remove elements that match kill_xpath
         if self.kill_xpath:
             for el in doc.xpath(self.kill_xpath, namespaces=self.namespaces):
@@ -104,9 +120,6 @@ class Cleaner(object):
                     else:
                         previous.tail = (previous.tail or '') + el.tail
                 parent.remove(el)
-
-        # Collect all the allowed elements
-        to_keep = [el for el in doc.xpath(self.allow_xpath, namespaces=self.namespaces)] if self.allow_xpath else []
 
         # Replace elements that match strip_xpath with their contents
         if self.strip_xpath:
@@ -136,17 +149,6 @@ class Cleaner(object):
                         previous.tail = (previous.tail or '') + el.tail
                 index = parent.index(el)
                 parent[index:index+1] = el[:]
-
-        for xpath, func in self.process_xpaths.items():
-            for el in doc.xpath(xpath, namespaces=self.namespaces):
-                parent = el.getparent()
-                if parent is None or el in to_keep:
-                    continue
-                new_element = func(el)
-                if new_element is None:
-                    parent.remove(el)
-                else:
-                    parent.replace(el, func(el))
 
         # Collapse whitespace down to a single space or a single newline
         if self.fix_whitespace:
