@@ -8,7 +8,7 @@ literature of layered cathode materials for sodium-ion batteries.
 ## Features
 
 - It is built on open-source libraries: [pymatgen], [text2chem], and [ChemDataExtractor v2] with some modifications.
-- BatteryBERT_cased Multi-Label text classification model for filtering documents. (Not yet uploaded)
+- [BatteryBERT_cased Multi-Label text classification] model for filtering documents. 
 - Automated comprehensive data extraction pipeline for cathode materials.
 - Paragraph Multi-Class classification algorithms for documents (HTML/XML) from the [RSC] and [Elsevier].
 - A normalised entity handling process is provided.
@@ -75,3 +75,5 @@ Try [gouyx@mail2.sysu.edu.cn](mailto:gouyx@mail2.sysu.edu.cn).
 [RSC]: https://pubs.rsc.org/
 
 [Elsevier]: https://www.elsevier.com/
+
+[BatteryBERT_cased Multi-Label text classification]: https://huggingface.co/NoWayBack/test
