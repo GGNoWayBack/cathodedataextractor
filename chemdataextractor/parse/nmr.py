@@ -10,7 +10,7 @@ import re
 
 from ..utils import first
 from .actions import join, merge, strip_stop, fix_whitespace
-from .base import BaseParser
+from .base import BaseSentenceParser
 from .common import cc, equals
 from .cem import chemical_name, nmr_solvent
 from .elements import W, I, T, R, Optional, ZeroOrMore, SkipTo, OneOrMore, Not, Group
@@ -107,7 +107,7 @@ peaks = (peak + ZeroOrMore(ZeroOrMore(delim | W('and')).hide() + peak))('peaks')
 nmr = (prelude + peaks)('nmr')
 
 
-class NmrParser(BaseParser):
+class NmrParser(BaseSentenceParser):
     """"""
 
     root = nmr
@@ -141,4 +141,4 @@ class NmrParser(BaseParser):
             n.peaks.append(nmr_peak)
 
         n.compound = c
-        yield c
+        yield n
