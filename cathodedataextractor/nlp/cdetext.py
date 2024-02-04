@@ -6,6 +6,8 @@ from chemdataextractor.doc.text import Span, Sentence, Text
 from chemdataextractor.nlp.tag import POS_TAG_TYPE, NER_TAG_TYPE
 from chemdataextractor.nlp.new_cem import CemTagger, BertFinetunedCRFCemTagger
 
+from .modi_cde_nlp import ModiBertWordTokenizer
+
 # Whether to use GPU
 CemTagger.taggers[2] = BertFinetunedCRFCemTagger(gpu_id=-1)
 cem_tagger = CemTagger()
@@ -19,6 +21,7 @@ class LText(Text):
     """
     lexicon = None
     abbreviation_detector = None
+    word_tokenizer = ModiBertWordTokenizer()
     taggers = [cem_tagger]
 
     def _sentences_from_spans(self, spans):
