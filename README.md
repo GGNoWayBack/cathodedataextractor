@@ -19,18 +19,19 @@ In addition, the pipeline is also suitable for string sequence text extraction.
 
 ## Quick start
 
-1. Extract from documents.
+#### Extract from documents
 
 ```python
 from glob import iglob
 from cathodedataextractor.information_extraction_pipe import Pipeline
 
+pipline = Pipeline()
 for document in iglob('*ml'):
-    extraction_results = pipe.extract(document)
+    extraction_results = pipline.extract(document)
 ```
 > 
 
-2. Extract from string.
+#### Extract from string
 
 ```python
 from cathodedataextractor.information_extraction_pipe import Pipeline
