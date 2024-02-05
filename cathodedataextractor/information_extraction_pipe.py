@@ -7,14 +7,15 @@ import csv
 from pathlib import Path
 from typing import List, Dict, Tuple, Union, Optional, NamedTuple
 
-from .parse import PARAGRAPH_SEPARATOR, ATTRIBUTE_PROMPT
+from .parse import PARAGRAPH_SEPARATOR, ATTRIBUTE_PROMPT, BACKSLASH_REPLACEMENT
 from .parse.relation_extraction import PropertyParse
 from .nlp import LText, AbbreviationDetection
 from .text import TagClassificationPar2Text, BatteriesTextProcessor
 from .relationextractpostprocessing import data_pprocess
-from .util_functions import write_into_json, write_csv
+from .utils import write_into_json, write_csv
 
 __all__ = ['Pipeline']
+
 
 class PipelineData(NamedTuple):
     """
@@ -22,7 +23,6 @@ class PipelineData(NamedTuple):
     """
     year: int = None
     doi: str = None
-    pred_labels: Optional[List[str]] = None
     introduction: Optional[str] = ''
     experiment: Optional[str] = ''
     property_text: Optional[str] = ''
@@ -36,13 +36,8 @@ PATH = Path(__file__).absolute().parent.parent
 
 class Pipeline:
 
-    def __init__(self, select_filename=None):
-        self.select_data = {}
-
-        if select_filename is not None:
-            with open(str(PATH / f"{select_filename}"),
-                      'r', encoding='utf-8') as f:  # Cached CSV files of the documents to be analyzed and their labels.
-                self.select_data = {row[1].replace('/', '.'): row[2] for row in csv.reader(f)}
+    def __init__(self, data_info=None):
+        self.doi2labels = {} if data_info is None else data_info
 
     @staticmethod
     def from_string(text: str):
@@ -81,8 +76,6 @@ class Pipeline:
         """
 
         head, tail = os.path.split(path)
-        if self.select_data and tail.rsplit('.', 1)[0] not in self.select_data:
-            return
 
         """
         Paragraph classification.
@@ -118,13 +111,15 @@ class Pipeline:
         TC.fulltext(head=head, tail=tail)
 
         return PipelineData(int(TC.year), TC.doi,
-                            introduction=TC.introduction, experiment=TC.experiment, property_text=TC.partial_text,
-                            pred_labels=self.select_data.get(TC.doi.replace("/", '.'), None))
+                            introduction=TC.introduction,
+                            experiment=TC.experiment,
+                            property_text=TC.partial_text
+                            )
 
     @staticmethod
     def _preprocess_csie(data: PipelineData) -> PipelineData:
         # preprocess
-        year, doi, labels, _intro, _experi, _partial_text = data[:6]
+        year, doi, _intro, _experi, _partial_text = data[:6]
 
         intro = _intro.strip(PARAGRAPH_SEPARATOR)
 
@@ -142,7 +137,7 @@ class Pipeline:
         abbreviation_detection = AbbreviationDetection()
         abbreviation_detection = abbreviation_detection(ltext)
 
-        return PipelineData(data.year, data.doi, data.pred_labels,
+        return PipelineData(data.year, data.doi,
                             '\n'.join(partial_text[:num + 1]), '\n'.join(experi), property_par,
                             abbreviation_detection.new_abbreviation,
                             abbreviation_detection.stoichiometric_variables_chem)
@@ -150,7 +145,7 @@ class Pipeline:
     @staticmethod
     def _relation_extract(data: PipelineData) -> PropertyParse:
 
-        year, doi, labels, _, exp, property_text, abb_che, stoichiometric_variable = data
+        year, doi, _, exp, property_text, abb_che, stoichiometric_variable = data
 
         pp = PropertyParse(abb_names=abb_che,
                            doi=doi,
