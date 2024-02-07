@@ -1,12 +1,21 @@
 # CathodeDataExtractor
 
+------------
+
 [![Supported Python versions](https://img.shields.io/badge/python-3.6%20%7C%203.7-blue.svg)](https://www.python.org/downloads/) [![GitHub LICENSE](https://img.shields.io/github/license/GGNoWayBack/cathodedataextractor.svg)](https://github.com/GGNoWayBack/cathodedataextractor/blob/main/LICENSE)  
 `Cathodedataextractor` is a lightweight document-level information extraction pipeline that can automatically extract
 comprehensive properties related to synthesis parameters, cycling and rate performance of cathode materials from the
 literature of layered cathode materials for sodium-ion batteries.
 
+## Installation
+
+------------
+
+`pip install chemdataextractor2`
+
 ## Features
 
+------------
 - It is built on open-source libraries: [pymatgen], [text2chem], and [ChemDataExtractor v2] with some modifications.
 - [BatteryBERT_cased Multi-Label text classification] model for filtering documents. 
 - Automated comprehensive data extraction pipeline for cathode materials.
@@ -19,6 +28,7 @@ In addition, the pipeline is also suitable for string sequence text extraction.
 
 ## Quick start
 
+------------
 #### Extract from documents
 
 ```python
@@ -54,6 +64,7 @@ extraction_results = Pipeline.from_string(
 
 ## Issues?
 
+------------
 You can either report an issue on GitHub or contact me directly. 
 Try [gouyx@mail2.sysu.edu.cn](mailto:gouyx@mail2.sysu.edu.cn).
 
