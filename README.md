@@ -11,7 +11,7 @@ literature of layered cathode materials for sodium-ion batteries.
 
 ------------
 
-`pip install chemdataextractor2`
+`pip install cathodedataextractor`
 
 ## Features
 
