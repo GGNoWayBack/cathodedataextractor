@@ -3,10 +3,9 @@ import os
 from setuptools import find_packages, setup
 
 long_description = open('README.md', encoding="utf8").read()
-
 setup(
     name='cathodedataextractor',
-    version='0.0.1',
+    version='0.0.2',
     description='A document-level information extraction pipeline for layered cathode materials for sodium-ion batteries.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -16,13 +15,13 @@ setup(
     url='https://github.com/GGNoWayBack/cathodedataextractor',
     install_requires=[
         'word2number',
-        'text2chem==0.0.2',
-        'chemdataextractor2==2.2.2',
         'pdfminer.six >=20160614, <=20221105 ; python_version < "3.8"'
+        'chemdataextractor2==2.2.2',
+        'text2chem==0.0.2',
+        'pymatgen',
     ],
     license='MIT',
     packages=find_packages(),
-    platforms=["all"],
     classifiers=[
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
