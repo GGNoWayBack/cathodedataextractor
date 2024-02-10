@@ -1,6 +1,6 @@
 # coding=utf-8
 from text2chem.regex_parser import (
-    re,
+    re, smp,
     list_of_elements_2,
     DEFICIENCY_CHARS, SIGNS, NUMBERS_STR,
     RegExParser
@@ -58,6 +58,41 @@ class CathodeRegExParser(RegExParser):
             oxy_def_sym = "±"
 
         return formula_upd, oxy_def, oxy_def_sym
+
+    @staticmethod
+    def make_fraction_convertion(formula):
+        """
+        converting fractions a(b+x)/c into (a/c*b+a/c*x) in formula
+        :param formula:
+        :return:
+        """
+        re_a = r"([0-9.]*)"
+        re_b = r"(\([0-9./]*)"
+        re_x = r"([a-z]*)"
+        re_s = r"([-+]+)"
+        re_d = r"([0-9./]*)"
+        re_y = r"([a-z]+\))"
+        re_c = r"(?=[/]*([0-9.]*))"
+        re_formula_fraction = r"(" + re_a + re_b + re_x + re_s + re_d + re_y + re_c + r")"
+        formula_upd = formula
+        for m in re.finditer(re_formula_fraction, formula_upd):
+            expr_old = m.group(1) + "/" + m.group(8) if m.group(8) != "" else m.group(1)
+            a = m.group(2).strip(")(") if m.group(2).strip(")(") != '' else '1'
+            b = m.group(3).strip(")(") if m.group(3).strip(')(') != '' else '1'
+            x = m.group(4).strip(")(") if m.group(4).strip(")(") != '' else '1'
+            s = m.group(5).strip(")(") if m.group(5).strip(")(") != '' else '+'
+            d = m.group(6).strip(")(") if m.group(6).strip(")(") != '' else '1'
+            y = m.group(7).strip(")(") if m.group(7).strip(")(") != '' else '1'
+            c = m.group(8).strip(")(") if m.group(8).strip(")(") != '' else '1'
+            expr_str = a + '/' + c + '*' + b + '*' + x + s + a + '/' + c + '*' + d + "*" + y
+            expr = str(smp.simplify(expr_str)).strip()
+            if expr[0] == '-':
+                s_expr = re.split(r"\+", expr)
+                expr = s_expr[1] + s_expr[0]
+            expr_new = expr.strip().replace(" ", "")
+            formula_upd = formula_upd.replace(expr_old, expr_new.strip(), 1)
+
+        return re.sub(r"\s{1,}", "", formula_upd)
 
     def get_elements_from_sentence(self, var, sentence):
         """
