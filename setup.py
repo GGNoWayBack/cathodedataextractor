@@ -15,7 +15,7 @@ setup(
     url='https://github.com/GGNoWayBack/cathodedataextractor',
     install_requires=[
         'word2number',
-        'pdfminer.six >=20160614, <=20221105 ; python_version < "3.8"'
+        'pdfminer.six >=20160614, <=20221105 ; python_version < "3.8"',
         'chemdataextractor2==2.2.2',
         'text2chem==0.0.2',
         'pymatgen',
