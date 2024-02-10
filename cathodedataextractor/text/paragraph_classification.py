@@ -12,7 +12,7 @@ import bs4.element
 from bs4 import BeautifulSoup
 from bs4.element import Tag, NavigableString
 
-from ..parse import PARAGRAPH_SEPARATOR, c_a_pattern, fig_pattern
+from ..parse import PARAGRAPH_SEPARATOR, c_a_pattern, fig_pattern, BACKSLASH_REPLACEMENT
 
 log = logging.getLogger(__name__)
 
@@ -56,8 +56,7 @@ class TagClassificationPar2Text:
 
         self._do_getabstract = False
 
-        self.doi = (tail[:tail[3:].index('.') + 3] + '/' +
-                    tail[tail[3:].index('.') + 4:tail.rindex('.')]).lower()
+        self.doi = tail.rsplit(".", 1)[0].replace(BACKSLASH_REPLACEMENT, "/")
 
         select_pattern = 'xml' if tail.endswith('xml') else 'html.parser'
         fp = open(f'{head}/{tail}', 'rb')
@@ -155,18 +154,19 @@ class TagClassificationPar2Text:
             experiment, introduction, total_text = '', '', ''
             if is_parallel_relation and intro_fg:  # parallel relationship
                 for ind, t in enumerate(title[1:]):
-                    if re.search(r'intro', t.text, re.I):
-                        full_article_tag = t.find_next_siblings()
-                        if not full_article_tag or full_article_tag[0] == title[ind + 1]:
-                            # Paragraph and title at the same level
-                            break
-                        after_intro_tag = full_article_tag.index(title[ind + 2])
-                        introduction_tag = full_article_tag[:after_intro_tag]
-                        full_article = full_article_tag[after_intro_tag:]
-                        _, introduction = self._rcs_html_parse(introduction_tag)
-
-                        experiment, total_text = self._rcs_html_parse(full_article)
+                    if not re.search(r'intro', t.text, re.I):
+                        continue
+                    full_article_tag = t.find_next_siblings()
+                    if not full_article_tag or full_article_tag[0] == title[ind + 1]:
+                        # Paragraph and title at the same level
                         break
+                    after_intro_tag = full_article_tag.index(title[ind + 2])
+                    introduction_tag = full_article_tag[:after_intro_tag]
+                    full_article = full_article_tag[after_intro_tag:]
+                    _, introduction = self._rcs_html_parse(introduction_tag)
+
+                    experiment, total_text = self._rcs_html_parse(full_article)
+                    break
 
             if not (experiment or total_text):
                 experiment, total_text = self._rcs_html_parse(
@@ -318,8 +318,6 @@ class TagClassificationPar2Text:
                     if len(other.find_all('section-title')) == 1:
                         if any(_ for _ in ['°C', '℃'] if _ in other.para.text):
                             experiment += self._process_soup_contents(other.para)
-                        else:
-                            break
 
                     # The experimental section has a secondary heading and
                     # the synthesis section is under the secondary heading.
@@ -328,17 +326,18 @@ class TagClassificationPar2Text:
                     break
                 else:
                     # The experimental part is in the discussion of the results.
-                    if re.search('Results?|discussions?',
-                                 other.find('section-title').text) and not experimental_section_last:
-                        if len(other.find_all('section-title')) == 1:
-                            experiment += self._process_soup_contents(other.para)
-                        else:
-                            for oth in other.contents:
-                                if oth == '\n':
-                                    continue
-                                if self.search_experiment(str(oth.find('section-title'))):
-                                    if '°C' in oth.text or 'synthe' in oth.text:
-                                        experiment = self._whether_multiple_par(oth)
+                    if not (re.search('Results?|discussions?',
+                                      other.find('section-title').text) and not experimental_section_last):
+                        continue
+                    if len(other.find_all('section-title')) == 1:
+                        experiment += self._process_soup_contents(other.para)
+                    else:
+                        for oth in other.contents:
+                            if oth == '\n':
+                                continue
+                            if self.search_experiment(str(oth.find('section-title'))) \
+                                    and ('°C' in oth.text or 'synthe' in oth.text):
+                                experiment = self._whether_multiple_par(oth)
 
         return experiment, PARAGRAPH_SEPARATOR.join(
             introduction), total_text + PARAGRAPH_SEPARATOR + self._to_find_next_siblings(intro)

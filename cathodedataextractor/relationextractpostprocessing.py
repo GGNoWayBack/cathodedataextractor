@@ -6,7 +6,7 @@ import os
 import json
 import pandas as pd
 from copy import deepcopy
-from .util_functions import write_into_json
+from .utils import write_into_json
 
 _sort = {'Doi': 0, 'Year': 1, 'Name': 2, 'Abbreviation': 3, 'Sintering temperature': 4, 'Sintering time': 5,
          'Category': 6, 'Cycle': 7, 'Capacity': 8, 'Retention': 8,
