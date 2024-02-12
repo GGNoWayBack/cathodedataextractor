@@ -1,14 +1,23 @@
 # CathodeDataExtractor
 
+------------
+
 [![Supported Python versions](https://img.shields.io/badge/python-3.6%20%7C%203.7-blue.svg)](https://www.python.org/downloads/) [![GitHub LICENSE](https://img.shields.io/github/license/GGNoWayBack/cathodedataextractor.svg)](https://github.com/GGNoWayBack/cathodedataextractor/blob/main/LICENSE)  
 `Cathodedataextractor` is a lightweight document-level information extraction pipeline that can automatically extract
 comprehensive properties related to synthesis parameters, cycling and rate performance of cathode materials from the
 literature of layered cathode materials for sodium-ion batteries.
 
+## Installation
+
+------------
+
+`pip install cathodedataextractor`
+
 ## Features
 
+------------
 - It is built on open-source libraries: [pymatgen], [text2chem], and [ChemDataExtractor v2] with some modifications.
-- [BatteryBERT_cased Multi-Label text classification] model for filtering documents. 
+- [BatterySciBERT-uncased Multi-Label text classification] model for filtering documents. 
 - Automated comprehensive data extraction pipeline for cathode materials.
 - Paragraph Multi-Class classification algorithms for documents (HTML/XML) from the [RSC] and [Elsevier].
 - A normalised entity handling process is provided.
@@ -19,18 +28,20 @@ In addition, the pipeline is also suitable for string sequence text extraction.
 
 ## Quick start
 
-1. Extract from documents.
+------------
+#### Extract from documents
 
 ```python
 from glob import iglob
 from cathodedataextractor.information_extraction_pipe import Pipeline
 
+pipline = Pipeline()
 for document in iglob('*ml'):
-    extraction_results = pipe.extract(document)
+    extraction_results = pipline.extract(document)
 ```
 > 
 
-2. Extract from string.
+#### Extract from string
 
 ```python
 from cathodedataextractor.information_extraction_pipe import Pipeline
@@ -53,6 +64,7 @@ extraction_results = Pipeline.from_string(
 
 ## Issues?
 
+------------
 You can either report an issue on GitHub or contact me directly. 
 Try [gouyx@mail2.sysu.edu.cn](mailto:gouyx@mail2.sysu.edu.cn).
 
@@ -76,4 +88,4 @@ Try [gouyx@mail2.sysu.edu.cn](mailto:gouyx@mail2.sysu.edu.cn).
 
 [Elsevier]: https://www.elsevier.com/
 
-[BatteryBERT_cased Multi-Label text classification]: https://huggingface.co/NoWayBack/test
+[BatterySciBERT-uncased Multi-Label text classification]: https://huggingface.co/NoWayBack/batteryscibert-uncased-abstract-mtc

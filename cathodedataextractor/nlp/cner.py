@@ -12,19 +12,26 @@ from pymatgen.core.periodic_table import _pt_data
 from pymatgen.core.composition import Composition
 
 from chemdataextractor.text import word_shape, like_number, QUOTES
-from text2chem.regex_parser import RegExParser
-from text2chem.parser_pipeline import ParserPipelineBuilder
+
+from cathodedataextractor.cathodetext2chem import (
+    CathodeParserPipelineBuilder,
+    CathodeRegExParser,
+    CathodeStoichiometricVariablesProcessing
+)
+
 from text2chem.preprocessing_tools.chemical_name_processing import ChemicalNameProcessing
 from text2chem.postprocessing_tools.element_variables_processing import ElementVariablesProcessing
-from text2chem.postprocessing_tools.stoichiometric_variables_processing import StoichiometricVariablesProcessing
 
 from ..parse import *
-from ..util_functions import if_num_dot, any_func
+from ..utils import if_num_dot, any_func
 
 log = logging.getLogger(__name__)
-mp = ParserPipelineBuilder().add_preprocessing(ChemicalNameProcessing). \
-    add_postprocessing(ElementVariablesProcessing).add_postprocessing(StoichiometricVariablesProcessing). \
-    set_regex_parser(RegExParser).build()
+mp = CathodeParserPipelineBuilder() \
+    .add_preprocessing(ChemicalNameProcessing) \
+    .add_postprocessing(ElementVariablesProcessing) \
+    .add_postprocessing(CathodeStoichiometricVariablesProcessing) \
+    .set_regex_parser(CathodeRegExParser) \
+    .build()
 
 
 class CNer:

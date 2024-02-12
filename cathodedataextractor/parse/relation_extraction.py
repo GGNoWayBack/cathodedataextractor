@@ -19,7 +19,7 @@ from . import (
 
 from .crc_relation import cycle_retentions, cycle_capacities
 
-from ..util_functions import if_num_dot, any_func
+from ..utils import if_num_dot, any_func
 from ..nlp import CNer, LText, AbbreviationDetection, units_tokenizer
 
 tokenizer = units_tokenizer
@@ -761,12 +761,11 @@ class PropertyParse:
                         new_.append(str(float(tok) / 100))
             else:
                 for ind, tok in enumerate(v_str):
-                    if if_num_dot(tok) and float(tok) < 10 and tok not in new_:
-                        if tok.startswith('0'):
-                            if tok[:2] == '0.':
-                                new_.append(tok)
-                            else:
-                                new_.append('0.' + tok[2:])
+                    if if_num_dot(tok) and float(tok) < 10 and tok not in new_ and tok.startswith('0'):
+                        if tok[:2] == '0.':
+                            new_.append(tok)
+                        else:
+                            new_.append('0.' + tok[2:])
 
             if _iter_group1 not in dic:
                 dic[_iter_group1] = (' ' + ', '.join(new_)) if new_ else ''

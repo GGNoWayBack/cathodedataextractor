@@ -22,10 +22,11 @@ from ..parse import (
     end_par_not_split_pattern,
     ignore_suffix_pattern
 )
-from ..util_functions import any_func, if_num_dot
+from ..utils import any_func, if_num_dot
 
 
 log = logging.getLogger(__name__)
+
 
 class AbbreviationDetection:
     """

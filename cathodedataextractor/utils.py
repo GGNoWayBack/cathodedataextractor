@@ -27,11 +27,13 @@ def write_into_json(path, data, mode='a'):
         json.dump(data, json_file, ensure_ascii=False)
         json_file.write('\n')
 
+
 def loads_json(path, mode='r'):
     json_file = open(f'{path}.json', mode, encoding='utf-8')
     json_ls = [json.loads(js) for js in json_file]
     json_file.close()
     return json_ls
+
 
 def load_json(filename, mode='r'):
     with open('{}.json'.format(filename), mode, encoding='utf-8') as json_file:

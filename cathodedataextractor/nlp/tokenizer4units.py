@@ -4,10 +4,10 @@ Word tokenizer with boundary-controlled.
 """
 import regex
 from typing import Iterable
-from .modi_cde_nlp import ChemWordTokenizer
+from .modi_cde_nlp import ModiChemWordTokenizer
 
 
-class UnitsTokenizer(ChemWordTokenizer):
+class UnitsTokenizer(ModiChemWordTokenizer):
     """
     Split units, prepositions, and numerical values
     """

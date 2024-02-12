@@ -7,7 +7,7 @@ from pymatgen.core.composition import Composition
 
 from ..nlp import LText, CNer
 from ..parse import *
-from ..util_functions import any_func
+from ..utils import any_func
 
 reference_symbols = punctuation + digits
 
