@@ -4,7 +4,7 @@ Some priori patterns and prompt words
 """
 import regex as re
 
-PARAGRAPH_SEPARATOR = '$$'
+BACKSLASH_REPLACEMENT = PARAGRAPH_SEPARATOR = '$$'
 
 ATTRIBUTE_PROMPT = ['voltage', 'mAhg-1', 'V', 'capacit', 'mAg-1', 'C', 'Ag-1', 'mAg-1']
 

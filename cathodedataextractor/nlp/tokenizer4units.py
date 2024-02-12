@@ -4,7 +4,7 @@ Word tokenizer with boundary-controlled.
 """
 import regex
 from typing import Iterable
-from chemdataextractor.nlp.tokenize import ChemWordTokenizer
+from .modi_cde_nlp import ChemWordTokenizer
 
 
 class UnitsTokenizer(ChemWordTokenizer):

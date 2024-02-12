@@ -7,7 +7,7 @@ import csv
 from pathlib import Path
 from typing import List, Dict, Tuple, Union, Optional, NamedTuple
 
-from .parse import PARAGRAPH_SEPARATOR, ATTRIBUTE_PROMPT
+from .parse import PARAGRAPH_SEPARATOR, ATTRIBUTE_PROMPT, BACKSLASH_REPLACEMENT
 from .parse.relation_extraction import PropertyParse
 from .nlp import LText, AbbreviationDetection
 from .text import TagClassificationPar2Text, BatteriesTextProcessor
@@ -42,7 +42,7 @@ class Pipeline:
         if select_filename is not None:
             with open(str(PATH / f"{select_filename}"),
                       'r', encoding='utf-8') as f:  # Cached CSV files of the documents to be analyzed and their labels.
-                self.select_data = {row[1].replace('/', '.'): row[2] for row in csv.reader(f)}
+                self.select_data = {row[1].replace('/', BACKSLASH_REPLACEMENT): row[2] for row in csv.reader(f)}
 
     @staticmethod
     def from_string(text: str):

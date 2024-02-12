@@ -64,32 +64,34 @@ class PropertyParse:
         """
         for sentence in obj.sentences:
             _text = sentence.text
-            if '°C' in _text:
-                # Temperature-time binary pairs.
-                t_ls, h_ls, pre_ = [], [], None
-                for t_or_c in t_c_pattern.finditer(_text):
+            if '°C' not in _text:
+                continue
+            # Temperature-time binary pairs.
+            t_ls, h_ls, pre_ = [], [], None
+            for t_or_c in t_c_pattern.finditer(_text):
 
-                    for pro, str_ in t_or_c.groupdict().items():
-                        if str_ is not None:
-                            catch_property = pro
-                            num_ls = (float(tok) for tok in tokenizer.tokenize(str_) if if_num_dot(tok))
-                            if pro == 'H':
-                                h_ls.extend(num_ls)
-                            else:
-                                t_ls.extend(num_ls)
-                            if pre_ and pre_ != catch_property and t_ls and h_ls:
-                                t_len, h_len = len(t_ls), len(h_ls)
+                for pro, str_ in t_or_c.groupdict().items():
+                    if str_ is None:
+                        continue
+                    catch_property = pro
+                    num_ls = (float(tok) for tok in tokenizer.tokenize(str_) if if_num_dot(tok))
+                    if pro == 'H':
+                        h_ls.extend(num_ls)
+                    else:
+                        t_ls.extend(num_ls)
+                    if pre_ and pre_ != catch_property and t_ls and h_ls:
+                        t_len, h_len = len(t_ls), len(h_ls)
 
-                                if t_len > h_len:
-                                    h_ls.extend([h_ls.pop()] * (t_len - h_len + 1))
-                                else:
-                                    t_ls.extend([t_ls.pop()] * (h_len - t_len + 1))
-                                self.temperature.extend(t_ls)
-                                self.time.extend(h_ls)
-                                t_ls, h_ls = [], []
-                                pre_ = None
-                            else:
-                                pre_ = catch_property
+                        if t_len > h_len:
+                            h_ls.extend([h_ls.pop()] * (t_len - h_len + 1))
+                        else:
+                            t_ls.extend([t_ls.pop()] * (h_len - t_len + 1))
+                        self.temperature.extend(t_ls)
+                        self.time.extend(h_ls)
+                        t_ls, h_ls = [], []
+                        pre_ = None
+                    else:
+                        pre_ = catch_property
         self._exp_results()
 
     def _exp_results(self):
@@ -558,30 +560,32 @@ class PropertyParse:
             for results in self.results:
                 phase_r, name_r = self.ner.separate_phase(results['Name'])
                 name_same = (not (phase_r or phase) or (phase_r == phase)) and name == name_r
-                if name_same:  # Only the same name has the possibility of removal.
-                    results_f, pro_f = results['Category'][0], pro['Category'][0]
-                    if results_f == pro_f:
-                        if results_f == 'C':
-                            if results['Cycle_capacity: mAhg-1'] == cycle_capacity or \
-                                    results['Cycle_retention: %'] == cycle_retention:
-                                if results.get('Cycle_retention: %', None) is None:
-                                    results['Cycle_retention: %'] = cycle_retention if cycle_retention[0] else None
-                                if results.get('Cycle_capacity: mAhg-1', None) is None:
-                                    results['Cycle_capacity: mAhg-1'] = cycle_capacity if cycle_capacity[0] else None
-                                if current_unit:
-                                    results.setdefault(current_unit, current)
-                                if results.get('Voltage_range: V', None) is None:
-                                    results['Voltage_range: V'] = _v(voltage)
-                                Write = False
-                                break
-                        else:
-                            if results['Capacity'] == cycle_capacity:
-                                if current_unit:
-                                    results.setdefault(current_unit, current)
-                                if results.get('Voltage_range: V', None) is None:
-                                    results['Voltage_range: V'] = _v(voltage)
-                                Write = False
-                                break
+                if not name_same:  # Only the same name has the possibility of removal.
+                    continue
+                results_f, pro_f = results['Category'][0], pro['Category'][0]
+                if results_f != pro_f:
+                    continue
+                if results_f == 'C':
+                    if results['Cycle_capacity: mAhg-1'] == cycle_capacity or \
+                            results['Cycle_retention: %'] == cycle_retention:
+                        if results.get('Cycle_retention: %', None) is None:
+                            results['Cycle_retention: %'] = cycle_retention if cycle_retention[0] else None
+                        if results.get('Cycle_capacity: mAhg-1', None) is None:
+                            results['Cycle_capacity: mAhg-1'] = cycle_capacity if cycle_capacity[0] else None
+                        if current_unit:
+                            results.setdefault(current_unit, current)
+                        if results.get('Voltage_range: V', None) is None:
+                            results['Voltage_range: V'] = _v(voltage)
+                        Write = False
+                        break
+                else:
+                    if results['Capacity'] == cycle_capacity:
+                        if current_unit:
+                            results.setdefault(current_unit, current)
+                        if results.get('Voltage_range: V', None) is None:
+                            results['Voltage_range: V'] = _v(voltage)
+                        Write = False
+                        break
             if Write:
                 return _new_write()
 

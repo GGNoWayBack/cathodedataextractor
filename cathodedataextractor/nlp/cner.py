@@ -3,7 +3,7 @@
 This module provides a class for assisted chemical named entity recognition (CNER) and post-processing.
 """
 import logging
-from typing import Tuple, Optional, Union
+from typing import Tuple, Union
 from string import digits
 from collections import OrderedDict
 from functools import lru_cache
