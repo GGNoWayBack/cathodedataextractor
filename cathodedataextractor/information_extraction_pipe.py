@@ -103,7 +103,8 @@ class Pipeline:
                     layer3=pp.results,
                     layer4=final_records)
 
-    def _collect_corpus(self, head, tail) -> PipelineData:
+    @staticmethod
+    def _collect_corpus(head, tail) -> PipelineData:
 
         TC = TagClassificationPar2Text()
         TC.get_abstract(head=head, tail=tail)
@@ -119,7 +120,7 @@ class Pipeline:
     @staticmethod
     def _preprocess_csie(data: PipelineData) -> PipelineData:
         # preprocess
-        year, doi, _intro, _experi, _partial_text = data[:6]
+        year, doi, _intro, _experi, _partial_text = data[:5]
 
         intro = _intro.strip(PARAGRAPH_SEPARATOR)
 
