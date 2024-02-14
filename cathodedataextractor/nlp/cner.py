@@ -143,7 +143,7 @@ class CNer:
             return 'element_name'
         elif cem in SIMPLE_COMPOUND:
             return 'simple'
-        if len(cem) == 1 or cem.endswith('/') or if_num_dot(cem) \
+        if len(cem) == 1 or cem.endswith(('/', '+')) or if_num_dot(cem) \
                 or re.match(r'[+a-z:]', cem) or re.search(r'[:@|]|[+]{0,1}/', cem):  # Na+/Na
             return 'other'
         pattern = re.compile(r'[SP]\d\d')
@@ -175,7 +175,7 @@ class CNer:
             elif set(cem.split('/')).difference(ELEMENTS):
                 return 'synthetic'
             # Nax(Cu-Fe-Mn)O2
-            elif ('Xx-Xx-Xx' in shape or all(len(i) <= 2 for i in cem.split('-'))):
+            elif 'Xx-Xx-Xx' in shape or all(len(i) <= 2 for i in cem.split('-')):
                 return 'irregular_shape'
             elif '/' not in cem:
                 return 'synthetic'
