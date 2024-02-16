@@ -85,7 +85,8 @@ GREEK_CHARS = {chr(i) for i in range(945, 970)}
 
 OTHER = ['PDF', 'No.', 'JCPDS', 'JCPSD', 'AB', 'ABCABC...', 'RT', 'SOC', 'ICP', '↔',
          'SIB', 'DFT', 'STA', 'ICSD', 'HITACH', 'NIST', 'PAL', 'Fig', 'TXM', 'SXRPD',
-         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3']
+         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'PC', 'OC', 'Nae', 'CB',
+         'ND', 'Na-rich', 'Non-sub', 'NL6', 'TG', 'NPs']
 
 ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX']
 
@@ -201,7 +202,7 @@ cycle_rate_capacity = {'cycle': r'(?(DEFINE)'
                        'capacity: mAhg-1': r'(?<!-|=)\b\d[\d.,~/ toand]*+mAhg-1',
                        'retention: %': r'(?<=\bretention.)[^%]*+%(?! higher)([^%\n](?>[^%]+|(?1))%(?! higher))*'
                                        r'|(?<=[ ~()])\d[\d.,and ]*+%[^%]+? (?=capacity|retention)',
-                       'current: C': r'(?<![-.])\b(\d[\d.,toand ]*+C\b(?!=)|(?<fraction>(?<![°@])C\s?/\s?\d+))',
+                       'current: C': r'(?<![-.])\b(\d[/\d.,toand ]*+C\b(?!=)|(?<fraction>(?<![°@])C\s?/\s?\d+))',
                        # 1C  C/100
                        'current: mAg-1': r'(?<![-=])\b\d[\d.,~/ toand]*+mAg-1',
                        'current: Ag-1': r'(?<!-)\b\d[\d.,/ toand]*+Ag-1'

@@ -179,12 +179,14 @@ class PropertyParse:
                             diff_unit = self.pro_list - {_key.split(': ')[1], }
                             property_dict_key = property_dict.setdefault(_key, [])
                             search_ls = tokenizer.tokenize(_re.group())
-                            for ind, _token in enumerate(search_ls):
+                            ind, search_ls_len = 0, len(search_ls)
+                            while ind < search_ls_len:
                                 # The judgement is a generalised value and should not be greater
                                 # than 100 and non-negative for values before.
+                                _token = search_ls[ind]
                                 if if_num_dot(_token):
                                     try:
-                                        if ind == len(search_ls) - 1:
+                                        if ind + 1 == search_ls_len:
                                             if 'fraction' in _re.groupdict():
                                                 property_dict_key.append(round(1 / eval(_token), 3))
                                             break
@@ -207,8 +209,13 @@ class PropertyParse:
                                                 property_dict_key.append(eval(_token))
                                     except Exception as e:
                                         print(_token, e)
+                                elif _key == 'current: C' and property_dict_key \
+                                        and _token == '/' and ind + 1 < search_ls_len and search_ls[ind + 1].isdigit():
+                                    property_dict_key[-1] = round(property_dict_key[-1] / eval(search_ls[ind + 1]), 3)
+                                    ind += 1
                                 elif _token in ['CE', 'ICE']:  # Exit when you run into coulomb efficiency.
                                     break
+                                ind += 1
 
                 # Ensure that the recorded data must have attributes extracted.
                 if 'cycle' in property_dict:
