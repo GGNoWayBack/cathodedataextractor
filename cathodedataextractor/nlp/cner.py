@@ -143,6 +143,8 @@ class CNer:
             return 'element_name'
         elif cem in SIMPLE_COMPOUND:
             return 'simple'
+        elif self.is_word(cem):
+            return 'other'
         if len(cem) == 1 or cem.endswith(('/', '+')) or if_num_dot(cem) \
                 or re.match(r'[+a-z:]', cem) or re.search(r'[:@|]|[+]{0,1}/', cem):  # Na+/Na
             return 'other'
@@ -231,6 +233,18 @@ class CNer:
                         return 'raw_material'
         return 'is_likely_abbreviation' if likely_abb_ or shape in ['XX', 'Xd.d'] and not any_func(cem, ['=',
                                                                                                          ',']) else 'other'
+
+    @staticmethod
+    def is_word(string, threshold_value=4):
+        continue_count = 0
+        for s in string:
+            if s.islower():
+                continue_count += 1
+            else:
+                continue_count = 0
+            if continue_count == threshold_value:
+                return True
+        return False
 
     @lru_cache(None)
     def is_compound_formula(self, cem: str, normalize: bool = False) -> Union[bool, Tuple[str, list]]:
