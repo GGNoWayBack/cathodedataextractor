@@ -145,7 +145,7 @@ class CNer:
             return 'simple'
         elif self.is_word(cem):
             return 'other'
-        if len(cem) == 1 or cem.endswith(('/', '+')) or if_num_dot(cem) \
+        if len(cem) == 1 or cem.endswith(('/', '+', '-')) or if_num_dot(cem) \
                 or re.match(r'[+a-z:]', cem) or re.search(r'[:@|]|[+]{0,1}/', cem):  # Na+/Na
             return 'other'
         pattern = re.compile(r'[SP]\d\d')
@@ -191,9 +191,9 @@ class CNer:
             return 'solvent_names'
         elif any_func(cem, RAW_MATERIAL):
             return 'raw_material'
-        elif any_func(cem, APPARATUS):
+        elif cem in APPARATUS:
             return 'apparatus'
-        elif any_func(cem, OTHER) or pattern.match(cem):
+        elif cem in OTHER or pattern.match(cem):
             return 'other'
 
         likely_abb_ = any_func(shape, ABB_SHAPE)

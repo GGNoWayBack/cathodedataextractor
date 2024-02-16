@@ -79,14 +79,14 @@ SOLVENT_NAMES = ['ethanol', 'dimethylformamide', 'methyl', 'pyrrolidone']  # 溶
 RAW_MATERIAL = ['CH3COO', 'OCH2CH3', 'OAc', 'NO', 'CO3', 'OH', 'SO4', 'NH2', 'BO3', 'NH3', 'NH4',
                 'CTAB', 'transition', 'Nitrates', 'H2O']
 
-APPARATUS = ['XRD', 'XPS', 'SEM', 'EDS', 'TEM', 'ESI', 'XAS', 'EXAFS', 'AFM', 'UV', 'XANES']
+APPARATUS = {'XRD', 'XPS', 'SEM', 'EDS', 'TEM', 'ESI', 'XAS', 'EXAFS', 'AFM', 'UV', 'XANES'}
 
 GREEK_CHARS = {chr(i) for i in range(945, 970)}
 
-OTHER = ['PDF', 'No.', 'JCPDS', 'JCPSD', 'AB', 'ABCABC...', 'RT', 'SOC', 'ICP', '↔',
+OTHER = {'PDF', 'No.', 'JCPDS', 'JCPSD', 'AB', 'ABCABC...', 'RT', 'SOC', 'ICP', '↔',
          'SIB', 'DFT', 'STA', 'ICSD', 'HITACH', 'NIST', 'PAL', 'Fig', 'TXM', 'SXRPD',
-         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'PC', 'OC', 'Nae', 'CB',
-         'ND', 'Na-rich', 'Non-sub', 'NL6', 'TG', 'NPs']
+         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'CS', 'PC', 'OC', 'Nae', 'CB',
+         'ND', 'Na-rich', 'Non-sub', 'TG', 'NPs', 'Na-ion'}
 
 ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX']
 
