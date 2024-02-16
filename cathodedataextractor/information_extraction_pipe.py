@@ -31,6 +31,16 @@ class PipelineData(NamedTuple):
     stoichiometric_variables_chem: Union[dict, Dict[str, List[int]]] = {}
 
 
+class PipelineOutputData(NamedTuple):
+    """
+    Information extraction pipeline output data types.
+    """
+    prep_data: Optional[dict] = None
+    prep_data_csie: Optional[dict] = None
+    relation_extract_res: List[dict] = ''
+    post_relation_extract_res: List[dict] = ''
+
+
 PATH = Path(__file__).absolute().parent.parent
 
 
@@ -62,9 +72,9 @@ class Pipeline:
         for orig in pp.results:
             final_records.extend(data_pprocess(orig))
 
-        return dict(layer1=prep_data._asdict(),
-                    layer2=pp.results,
-                    layer3=final_records)
+        return PipelineOutputData(prep_data_csie=prep_data._asdict(),
+                                  relation_extract_res=pp.results,
+                                  post_relation_extract_res=final_records)
 
     def extract(self, path: str):
         """
@@ -98,10 +108,10 @@ class Pipeline:
         final_records = []
         for orig in pp.results:
             final_records.extend(data_pprocess(orig))
-        return dict(layer1=data._asdict(),
-                    layer2=prep_data._asdict(),
-                    layer3=pp.results,
-                    layer4=final_records)
+        return PipelineOutputData(prep_data=data._asdict(),
+                                  prep_data_csie=prep_data._asdict(),
+                                  relation_extract_res=pp.results,
+                                  post_relation_extract_res=final_records)
 
     @staticmethod
     def _collect_corpus(head, tail) -> PipelineData:
