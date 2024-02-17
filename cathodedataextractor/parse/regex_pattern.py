@@ -85,8 +85,8 @@ GREEK_CHARS = {chr(i) for i in range(945, 970)}
 
 OTHER = ['PDF', 'No.', 'JCPDS', 'JCPSD', 'AB', 'ABCABC...', 'RT', 'SOC', 'ICP', '↔',
          'SIB', 'DFT', 'STA', 'ICSD', 'HITACH', 'NIST', 'PAL', 'Fig', 'TXM', 'SXRPD',
-         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'PC', 'OC', 'Nae', 'CB',
-         'ND', 'Na-rich', 'Non-sub', 'NL6', 'TG', 'NPs']
+         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'CS', 'PC', 'OC', 'Nae', 'CB',
+         'ND', 'Na-rich', 'Non-sub', 'TG', 'NPs', 'Na-ion']
 
 ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX']
 

@@ -145,7 +145,7 @@ class CNer:
             return 'simple'
         elif self.is_word(cem):
             return 'other'
-        if len(cem) == 1 or cem.endswith(('/', '+')) or if_num_dot(cem) \
+        if len(cem) == 1 or cem.endswith(('/', '+', '-')) or if_num_dot(cem) \
                 or re.match(r'[+a-z:]', cem) or re.search(r'[:@|]|[+]{0,1}/', cem):  # Na+/Na
             return 'other'
         pattern = re.compile(r'[SP]\d\d')
