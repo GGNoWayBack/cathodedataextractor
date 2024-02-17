@@ -191,9 +191,9 @@ class CNer:
             return 'solvent_names'
         elif any_func(cem, RAW_MATERIAL):
             return 'raw_material'
-        elif any_func(cem, APPARATUS):
+        elif cem in APPARATUS:
             return 'apparatus'
-        elif any_func(cem, OTHER) or pattern.match(cem):
+        elif cem in OTHER or pattern.match(cem):
             return 'other'
 
         likely_abb_ = any_func(shape, ABB_SHAPE)
