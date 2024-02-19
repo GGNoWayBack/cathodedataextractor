@@ -83,10 +83,14 @@ APPARATUS = {'XRD', 'XPS', 'SEM', 'EDS', 'TEM', 'ESI', 'XAS', 'EXAFS', 'AFM', 'U
 
 GREEK_CHARS = {chr(i) for i in range(945, 970)}
 
-OTHER = {'PDF', 'No.', 'JCPDS', 'JCPSD', 'AB', 'ABCABC...', 'RT', 'SOC', 'ICP', '↔',
-         'SIB', 'DFT', 'STA', 'ICSD', 'HITACH', 'NIST', 'PAL', 'Fig', 'TXM', 'SXRPD',
-         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'CS', 'PC', 'OC', 'Nae', 'CB',
-         'ND', 'Na-rich', 'Non-sub', 'TG', 'NPs', 'Na-ion'}
+OTHER = {'JCPDS', 'JCPSD', 'RT', 'SOC', 'ICP', 'SIB', 'DFT', 'STA', 'ICSD', 'HITACH', 'NIST', 'PAL', 'TXM', 'SXRPD',
+         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'CS', 'PC', 'OC', 'CB', 'ND', 'TG', 'NPs'}
+
+OTHER_IN = ['PDF', 'No.', '↔', 'Nae', 'Fig',
+            'Na-',  # Na-rich Na-ion
+            'AB',  # AB ABCABC...
+            'Non',  # Non-sub
+            ]
 
 ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX']
 
@@ -186,8 +190,8 @@ global_voltage = re.compile(r'(\d[\d.]*+)\s?(?>-|to|and)\s?(\d[\d.]*+)\s?(?=V\b)
 
 # 1.0C = 200 mAg-1, 17 mA g-1 (0.1 C)
 current_define_pattern = re.compile(r'(?|\b(' + NUMBER_REGEX + r')C\s?=\s?(' + NUMBER_REGEX + r')\s?mAg-1\b|'  # CM
-                                    r'(' + NUMBER_REGEX + r')mAg-1\s?\((' + NUMBER_REGEX + r')C\s?\)|'  # MC
-                                    r'(' + NUMBER_REGEX + r')C\s?\((' + NUMBER_REGEX + r')\s?mAg-1\s?\))')  # CM
+                                                                                              r'(' + NUMBER_REGEX + r')mAg-1\s?\((' + NUMBER_REGEX + r')C\s?\)|'  # MC
+                                                                                                                                                     r'(' + NUMBER_REGEX + r')C\s?\((' + NUMBER_REGEX + r')\s?mAg-1\s?\))')  # CM
 
 # Performance properties
 cycle_rate_capacity = {'cycle': r'(?(DEFINE)'

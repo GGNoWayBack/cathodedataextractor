@@ -193,7 +193,7 @@ class CNer:
             return 'raw_material'
         elif cem in APPARATUS:
             return 'apparatus'
-        elif cem in OTHER or pattern.match(cem):
+        elif cem in OTHER or any_func(cem, OTHER_IN) or pattern.match(cem):
             return 'other'
 
         likely_abb_ = any_func(shape, ABB_SHAPE)
@@ -236,15 +236,17 @@ class CNer:
 
     @staticmethod
     def is_word(string, threshold_value=4):
-        continue_count = 0
-        for s in string:
-            if s.islower():
-                continue_count += 1
-            else:
-                continue_count = 0
-            if continue_count == threshold_value:
-                return True
-        return False
+        def check(string_block):
+            continue_count = 0
+            for s in string_block:
+                if s.islower():
+                    continue_count += 1
+                else:
+                    continue_count = 0
+                if continue_count == threshold_value:
+                    return True
+            return False
+        return all(check(_) for _ in string.split("-"))
 
     @lru_cache(None)
     def is_compound_formula(self, cem: str, normalize: bool = False) -> Union[bool, Tuple[str, list]]:

@@ -1,5 +1,5 @@
 # coding=utf-8
-from text2chem.postprocessing_tools.stoichiometric_variables_processing import StoichiometricVariablesProcessing
+from text2chem.postprocessing_tools.stoichiometric_variables_processing import re, StoichiometricVariablesProcessing
 
 
 class CathodeStoichiometricVariablesProcessing(StoichiometricVariablesProcessing):
