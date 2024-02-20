@@ -1,0 +1,97 @@
+[
+  {
+    "material": "P2-Na2/3(CoxNi1/3-xMn2/3)O2",
+    "parser_output": [
+      {
+        "material_string": "P2-Na2/3(CoxNi1/3-xMn2/3)O2",
+        "material_name": "",
+        "material_formula": "Na2/3(CoxNi1/3-xMn2/3)O2",
+        "additives": [],
+        "phase": "P2",
+        "oxygen_deficiency": "",
+        "amounts_x": {
+          "x": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          }
+        },
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Na2/3(CoxNi1/3-xMn2/3)O2",
+            "amount": "1",
+            "elements": {
+              "Co": "x",
+              "Ni": "0.333-x",
+              "Mn": "0.667",
+              "Na": "0.667",
+              "O": "2"
+            },
+            "species": {
+              "Co": "x",
+              "Ni": "0.333-x",
+              "Mn": "0.667",
+              "Na": "0.667",
+              "O": "2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "γ-MnOOH",
+    "parser_output": [
+      {
+        "material_string": "γ-MnOOH",
+        "material_name": "",
+        "material_formula": "MnOOH",
+        "additives": [],
+        "phase": "γ",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "MnOOH",
+            "amount": "1",
+            "elements": {
+              "Mn": "1",
+              "O": "2",
+              "H": "1"
+            },
+            "species": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "g-MnOOH",
+    "parser_output": [
+      {
+        "material_string": "g-MnOOH",
+        "material_name": "",
+        "material_formula": "MnOOH",
+        "additives": [],
+        "phase": "g",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "MnOOH",
+            "amount": "1",
+            "elements": {
+              "Mn": "1",
+              "O": "2",
+              "H": "1"
+            },
+            "species": {}
+          }
+        ]
+      }
+    ]
+  }
+]

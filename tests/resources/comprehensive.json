@@ -1,0 +1,133 @@
+[
+  {
+    "material": "P2-Na7/10Mn3/4Fe(1/4-x-y)NixCoyO2",
+    "parser_output": [
+      {
+        "material_string": "P2-Na7/10Mn3/4Fe(1/4-x-y)NixCoyO2",
+        "material_name": "",
+        "material_formula": "Na7/10Mn3/4Fe(1/4-x-y)NixCoyO2",
+        "additives": [],
+        "phase": "P2",
+        "oxygen_deficiency": "",
+        "amounts_x": {
+          "x": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          },
+          "y": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          }
+        },
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Na7/10Mn3/4Fe(1/4-x-y)NixCoyO2",
+            "amount": "1",
+            "elements": {
+              "Na": "0.7",
+              "Mn": "0.75",
+              "Fe": "0.25-x-y",
+              "Ni": "x",
+              "Co": "y",
+              "O": "2"
+            },
+            "species": {
+              "Na": "0.7",
+              "Mn": "0.75",
+              "Fe": "0.25-x-y",
+              "Ni": "x",
+              "Co": "y",
+              "O": "2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Mg-doped Na2/3Ni(3/10-x)MgxMn7/10O2",
+    "parser_output": [
+      {
+        "material_string": "Mg-doped Na2/3Ni(3/10-x)MgxMn7/10O2",
+        "material_name": "",
+        "material_formula": "Na2/3Ni3/10-xMgxMn7/10O2",
+        "additives": [
+          "Mg"
+        ],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {
+          "x": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          }
+        },
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Na2/3Ni3/10-xMgxMn7/10O2",
+            "amount": "1",
+            "elements": {
+              "Na": "0.667",
+              "Ni": "0.3-x",
+              "Mg": "x",
+              "Mn": "0.7",
+              "O": "2"
+            },
+            "species": {
+              "Na": "0.667",
+              "Ni": "0.3-x",
+              "Mg": "x",
+              "Mn": "0.7",
+              "O": "2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Al3+-doped (Zn1/6Ba1/6Ca1/6Sr1/6La1/3)TiO3",
+    "parser_output": [
+      {
+        "material_string": "Al3+-doped (Zn1/6Ba1/6Ca1/6Sr1/6La1/3)TiO3",
+        "material_name": "",
+        "material_formula": "(Zn1/6Ba1/6Ca1/6Sr1/6La1/3)TiO3",
+        "additives": [
+          "Al3+"
+        ],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "(Zn1/6Ba1/6Ca1/6Sr1/6La1/3)TiO3",
+            "amount": "1",
+            "elements": {
+              "Zn": "0.167",
+              "Ba": "0.167",
+              "Ca": "0.167",
+              "Sr": "0.167",
+              "La": "0.333",
+              "Ti": "1",
+              "O": "3"
+            },
+            "species": {
+              "Zn": "0.167",
+              "Ba": "0.167",
+              "Ca": "0.167",
+              "Sr": "0.167",
+              "La": "0.333",
+              "TiO3": "1"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

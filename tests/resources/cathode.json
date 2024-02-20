@@ -1,0 +1,43 @@
+[
+  {
+    "material": "Na2/3Ni1/3Co(1/3-x)Mn1/3AlxO2",
+    "parser_output": {
+    "material_string": "Na2/3Ni1/3Co(1/3-x)Mn1/3AlxO2",
+    "material_name": "",
+    "material_formula": "Na2/3Ni1/3Co1/3-xMn1/3AlxO2",
+    "additives": [],
+    "phase": "",
+    "oxygen_deficiency": "",
+    "amounts_x": {
+      "x": {
+        "values": [],
+        "max_value": null,
+        "min_value": null
+      }
+    },
+    "elements_x": {},
+    "composition": [
+      {
+        "formula": "Na2/3Ni1/3Co1/3-xMn1/3AlxO2",
+        "amount": "1",
+        "elements": {
+          "Na": "0.667",
+          "Ni": "0.333",
+          "Co": "0.333-x",
+          "Mn": "0.333",
+          "Al": "x",
+          "O": "2"
+        },
+        "species": {
+          "Na": "0.667",
+          "Ni": "0.333",
+          "Co": "0.333-x",
+          "Mn": "0.333",
+          "Al": "x",
+          "O": "2"
+        }
+      }
+    ]
+  }
+  }
+]
