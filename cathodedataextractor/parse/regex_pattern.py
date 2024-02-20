@@ -66,7 +66,7 @@ METAL_TYPES = {  # "non_metals": ['H', 'C', 'N', 'O', 'F', 'Cl', 'S', 'P', 'Se',
     "other_me": ['B', 'Al', 'Ga', 'In', 'Tl', 'Si', 'Ge', 'Sn', 'Pb', 'As', 'Sb', 'Bi', 'Te'],
 }
 
-POLYATOMIC_IONS = ['CO3', 'PO4', 'PO3', 'P2O7', 'NH4', 'NO3', 'NO2', 'SO4', 'SO3', 'OH', 'CN', 'SiO4']
+POLYATOMIC_IONS = {'CO3', 'PO4', 'PO3', 'P2O7', 'NH4', 'NO3', 'NO2', 'SO4', 'SO3', 'OH', 'CN', 'SiO4'}
 SIMPLE_COMPOUND = ['NaHO', 'NaCl', 'NaF', 'NaBr', 'Na2S2', 'Na2CO3']
 # m_anions = ['H2PO4', 'HPO4', 'HCO3', 'HSO4', 'HSO3', 'C2O4']
 # d_anions = ['CO3', 'PO4', 'PO3', 'NH4', 'NO3', 'NO2', 'SO4', 'SO3', 'OH', 'CN']
@@ -84,15 +84,15 @@ APPARATUS = {'XRD', 'XPS', 'SEM', 'EDS', 'TEM', 'ESI', 'XAS', 'EXAFS', 'AFM', 'U
 GREEK_CHARS = {chr(i) for i in range(945, 970)}
 
 OTHER = {'JCPDS', 'JCPSD', 'RT', 'SOC', 'ICP', 'SIB', 'DFT', 'STA', 'ICSD', 'HITACH', 'NIST', 'PAL', 'TXM', 'SXRPD',
-         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'CS', 'PC', 'OC', 'CB', 'ND', 'TG', 'NPs'}
+         'PVDF', 'DFPT', 'CNTs', 'USP', 'ALD', 'PH3', 'CV', 'CS', 'PC', 'OC', 'CB', 'ND', 'TG', 'NPs',
+         'Na-rich', 'Na-ion'}
 
 OTHER_IN = ['PDF', 'No.', '↔', 'Nae', 'Fig',
-            'Na-',  # Na-rich Na-ion
             'AB',  # AB ABCABC...
             'Non',  # Non-sub
             ]
 
-ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX']
+ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX', 'Xddd']
 
 NUMBER_REGEX = r'\d++[\d. ]*+'
 

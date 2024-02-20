@@ -1,0 +1,875 @@
+[
+  {
+    "material": "manganese (II) nitrate Mn(NO3)2·4H2O",
+    "parser_output": [
+      {
+        "material_string": "manganese (II) nitrate Mn(NO3)2·4H2O",
+        "material_name": "manganese (II) nitrate",
+        "material_formula": "Mn(NO3)2·4H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Mn(NO3)2",
+            "amount": "1",
+            "elements": {
+              "N": "2",
+              "O": "6",
+              "Mn": "1"
+            },
+            "species": {
+              "NO3": "2",
+              "Mn": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "4",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Lanthanum strontium manganite (La0.8Sr0.2)0.97MnO3",
+    "parser_output": [
+      {
+        "material_string": "Lanthanum strontium manganite (La0.8Sr0.2)0.97MnO3",
+        "material_name": "Lanthanum strontium manganite",
+        "material_formula": "(La0.8Sr0.2)0.97MnO3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "(La0.8Sr0.2)0.97MnO3",
+            "amount": "1",
+            "elements": {
+              "La": "0.776",
+              "Sr": "0.194",
+              "Mn": "1",
+              "O": "3"
+            },
+            "species": {
+              "La": "0.776",
+              "Sr": "0.194",
+              "Mn": "1",
+              "O": "3"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "lutetium oxide Lu2O3",
+    "parser_output": [
+      {
+        "material_string": "lutetium oxide Lu2O3",
+        "material_name": "lutetium oxide",
+        "material_formula": "Lu2O3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Lu2O3",
+            "amount": "1",
+            "elements": {
+              "Lu": "2",
+              "O": "3"
+            },
+            "species": {
+              "Lu": "2",
+              "O": "3"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "molybdenum oxide Ag1/8Pr5/8MoO4",
+    "parser_output": [
+      {
+        "material_string": "molybdenum oxide Ag1/8Pr5/8MoO4",
+        "material_name": "molybdenum oxide",
+        "material_formula": "Ag1/8Pr5/8MoO4",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Ag1/8Pr5/8MoO4",
+            "amount": "1",
+            "elements": {
+              "Ag": "0.125",
+              "Pr": "0.625",
+              "Mo": "1",
+              "O": "4"
+            },
+            "species": {
+              "Ag": "0.125",
+              "Pr": "0.625",
+              "MoO4": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Er chlorides",
+    "parser_output": [
+      {
+        "material_string": "Er chlorides",
+        "material_name": "erbium chloride",
+        "material_formula": "ErCl3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "ErCl3",
+            "amount": "1",
+            "elements": {
+              "Er": "1",
+              "Cl": "3"
+            },
+            "species": {
+              "Er": "1",
+              "Cl": "3"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "ferric perchlorate",
+    "parser_output": [
+      {
+        "material_string": "ferric perchlorate",
+        "material_name": "ferric perchlorate",
+        "material_formula": "Fe(ClO4)3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Fe(ClO4)3",
+            "amount": "1",
+            "elements": {
+              "Cl": "3",
+              "O": "12",
+              "Fe": "1"
+            },
+            "species": {
+              "ClO4": "3",
+              "Fe": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "triammonium citrate",
+    "parser_output": [
+      {
+        "material_string": "triammonium citrate",
+        "material_name": "triammonium citrate",
+        "material_formula": "(NH4)3C3H5O(COO)3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "(NH4)3C3H5O(COO)3",
+            "amount": "1",
+            "elements": {
+              "N": "3",
+              "H": "17",
+              "C": "6",
+              "O": "7"
+            },
+            "species": {
+              "NH4": "3",
+              "C3H5O(COO)3": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "ammonium molybdate ((NH4)6Mo7O24·4H2O)",
+    "parser_output": [
+      {
+        "material_string": "ammonium molybdate ((NH4)6Mo7O24·4H2O)",
+        "material_name": "ammonium molybdate",
+        "material_formula": "(NH4)6Mo7O24·4H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "(NH4)6Mo7O24",
+            "amount": "1",
+            "elements": {
+              "N": "6",
+              "H": "24",
+              "Mo": "7",
+              "O": "24"
+            },
+            "species": {
+              "NH4": "6",
+              "Mo7O24": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "4",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Copper Sulfate Pentahydrate",
+    "parser_output": [
+      {
+        "material_string": "Copper Sulfate Pentahydrate",
+        "material_name": "Copper Sulfate Pentahydrate",
+        "material_formula": "CuSO4·5H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "CuSO4",
+            "amount": "1",
+            "elements": {
+              "Cu": "1",
+              "S": "1",
+              "O": "4"
+            },
+            "species": {
+              "Cu": "1",
+              "SO4": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "5",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "antimony pentoxide",
+    "parser_output": [
+      {
+        "material_string": "antimony pentoxide",
+        "material_name": "antimony pentoxide",
+        "material_formula": "Sb2O5",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Sb2O5",
+            "amount": "1",
+            "elements": {
+              "Sb": "2",
+              "O": "5"
+            },
+            "species": {
+              "Sb": "2",
+              "O": "5"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "zinc (II) acetate dihydrate",
+    "parser_output": [
+      {
+        "material_string": "zinc (II) acetate dihydrate",
+        "material_name": "zinc (II) acetate dihydrate",
+        "material_formula": "Zn(CH3COO)2·2H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Zn(CH3COO)2",
+            "amount": "1",
+            "elements": {
+              "C": "4",
+              "H": "6",
+              "O": "4",
+              "Zn": "1"
+            },
+            "species": {
+              "CH3COO": "2",
+              "Zn": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "2",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "yttrium (III) nitrate hexahydrate",
+    "parser_output": [
+      {
+        "material_string": "yttrium (III) nitrate hexahydrate",
+        "material_name": "yttrium (III) nitrate hexahydrate",
+        "material_formula": "Y(NO3)3·6H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Y(NO3)3",
+            "amount": "1",
+            "elements": {
+              "N": "3",
+              "O": "9",
+              "Y": "1"
+            },
+            "species": {
+              "NO3": "3",
+              "Y": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "6",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Titanium Tetraisopropoxide",
+    "parser_output": [
+      {
+        "material_string": "Titanium Tetraisopropoxide",
+        "material_name": "Titanium Tetraisopropoxide",
+        "material_formula": "Ti(OCH(CH3)2)4",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Ti(OCH(CH3)2)4",
+            "amount": "1",
+            "elements": {
+              "C": "12",
+              "H": "28",
+              "O": "4",
+              "Ti": "1"
+            },
+            "species": {
+              "OCH(CH3)2": "4",
+              "Ti": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "praseodymium tungstate Cd0.25Pr0.50□0.25WO4",
+    "parser_output": [
+      {
+        "material_string": "praseodymium tungstate Cd0.25Pr0.50□0.25WO4",
+        "material_name": "praseodymium tungstate",
+        "material_formula": "Cd0.25Pr0.50□0.25WO4",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Cd0.25Pr0.50□0.25WO4",
+            "amount": "1",
+            "elements": {
+              "Cd": "0.25",
+              "Pr": "0.5",
+              "□": "0.25",
+              "W": "1",
+              "O": "4"
+            },
+            "species": {
+              "Cd": "0.25",
+              "Pr": "0.5",
+              "□": "0.25",
+              "WO4": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "europium (III) nitrate pentahydrate",
+    "parser_output": [
+      {
+        "material_string": "europium (III) nitrate pentahydrate",
+        "material_name": "europium (III) nitrate pentahydrate",
+        "material_formula": "Eu(NO3)3·5H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Eu(NO3)3",
+            "amount": "1",
+            "elements": {
+              "N": "3",
+              "O": "9",
+              "Eu": "1"
+            },
+            "species": {
+              "NO3": "3",
+              "Eu": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "5",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "gadolinium aluminium borate",
+    "parser_output": [
+      {
+        "material_string": "gadolinium aluminium borate",
+        "material_name": "gadolinium aluminium borate",
+        "material_formula": "GdAl3(BO3)4",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "GdAl3(BO3)4",
+            "amount": "1",
+            "elements": {
+              "B": "4",
+              "O": "12",
+              "Gd": "1",
+              "Al": "3"
+            },
+            "species": {
+              "BO3": "4",
+              "Gd": "1",
+              "Al": "3"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Ammonium heptamolybdate",
+    "parser_output": [
+      {
+        "material_string": "Ammonium heptamolybdate",
+        "material_name": "Ammonium heptamolybdate",
+        "material_formula": "(NH4)6Mo7O24",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "(NH4)6Mo7O24",
+            "amount": "1",
+            "elements": {
+              "N": "6",
+              "H": "24",
+              "Mo": "7",
+              "O": "24"
+            },
+            "species": {
+              "NH4": "6",
+              "Mo7O24": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Al-nitrate hydrate",
+    "parser_output": [
+      {
+        "material_string": "Al-nitrate hydrate",
+        "material_name": "Al-nitrate hydrate",
+        "material_formula": "Al(NO3)3·H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Al(NO3)3",
+            "amount": "1",
+            "elements": {
+              "N": "3",
+              "O": "9",
+              "Al": "1"
+            },
+            "species": {
+              "NO3": "3",
+              "Al": "1"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "1",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "manganese di-oxide",
+    "parser_output": [
+      {
+        "material_string": "manganese di-oxide",
+        "material_name": "manganese di-oxide",
+        "material_formula": "MnO2",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "MnO2",
+            "amount": "1",
+            "elements": {
+              "Mn": "1",
+              "O": "2"
+            },
+            "species": {
+              "Mn": "1",
+              "O": "2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "titanium (IV) oxide",
+    "parser_output": [
+      {
+        "material_string": "titanium (IV) oxide",
+        "material_name": "titanium (IV) oxide",
+        "material_formula": "TiO2",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "TiO2",
+            "amount": "1",
+            "elements": {
+              "Ti": "1",
+              "O": "2"
+            },
+            "species": {
+              "Ti": "1",
+              "O": "2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "lanthanum-calcium chromites-titanates (La1-xCax)1-zCr1-yTiyO3",
+    "parser_output": [
+      {
+        "material_string": "lanthanum-calcium chromites-titanates (La1-xCax)1-zCr1-yTiyO3",
+        "material_name": "lanthanum-calcium chromites-titanates",
+        "material_formula": "(La1-xCax)1-zCr1-yTiyO3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {
+          "x": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          },
+          "z": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          },
+          "y": {
+            "values": [],
+            "max_value": null,
+            "min_value": null
+          }
+        },
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "(La1-xCax)1-zCr1-yTiyO3",
+            "amount": "1",
+            "elements": {
+              "La": "(x-1)*(z-1)",
+              "Ca": "x*(1-z)",
+              "Cr": "1-y",
+              "Ti": "y",
+              "O": "3"
+            },
+            "species": {
+              "La": "(x-1)*(z-1)",
+              "Ca": "x*(1-z)",
+              "Cr": "1-y",
+              "Ti": "y",
+              "O": "3"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "YBa2Cu3O7-y (YBCO)",
+    "parser_output": [
+      {
+        "material_string": "YBa2Cu3O7-y (YBCO)",
+        "material_name": "(YBCO)",
+        "material_formula": "YBa2Cu3O7",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "-",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "YBa2Cu3O7",
+            "amount": "1",
+            "elements": {
+              "Y": "1",
+              "Ba": "2",
+              "Cu": "3",
+              "O": "7"
+            },
+            "species": {
+              "Y": "1",
+              "Ba": "2",
+              "Cu": "3",
+              "O": "7"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "Hydrated tin (II) chloride",
+    "parser_output": [
+      {
+        "material_string": "Hydrated tin (II) chloride",
+        "material_name": "Hydrated tin (II) chloride",
+        "material_formula": "SnCl2·H2O",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "SnCl2",
+            "amount": "1",
+            "elements": {
+              "Sn": "1",
+              "Cl": "2"
+            },
+            "species": {
+              "Sn": "1",
+              "Cl": "2"
+            }
+          },
+          {
+            "formula": "H2O",
+            "amount": "1",
+            "elements": {
+              "H": "2",
+              "O": "1"
+            },
+            "species": {
+              "H2O": "1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "YAG",
+    "parser_output": [
+      {
+        "material_string": "YAG",
+        "material_name": "",
+        "material_formula": "Y3Al5O12",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "Y3Al5O12",
+            "amount": "1",
+            "elements": {
+              "Y": "3",
+              "Al": "5",
+              "O": "12"
+            },
+            "species": {
+              "Y": "3",
+              "Al": "5",
+              "O": "12"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "material": "ilmenite",
+    "parser_output": [
+      {
+        "material_string": "ilmenite",
+        "material_name": "ilmenite",
+        "material_formula": "FeTiO3",
+        "additives": [],
+        "phase": "",
+        "oxygen_deficiency": "",
+        "amounts_x": {},
+        "elements_x": {},
+        "composition": [
+          {
+            "formula": "FeTiO3",
+            "amount": "1",
+            "elements": {
+              "Fe": "1",
+              "Ti": "1",
+              "O": "3"
+            },
+            "species": {
+              "Fe": "1",
+              "TiO3": "1"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

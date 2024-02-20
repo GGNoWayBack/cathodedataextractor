@@ -3,6 +3,7 @@ import unittest
 
 from cathodedataextractor.nlp import CNer
 
+
 class TestCNer(unittest.TestCase):
     ner = CNer()
 
@@ -54,22 +55,25 @@ class TestCNer(unittest.TestCase):
             self.assertEqual(self.ner.is_compound_formula(t2[0]), t2[1])
 
     def test_prompt_tag(self):
-        test3 = [
-            ('Na2CO3', 'simple'),
-            ('Na2CO3R', 'raw_material'),
-            ('NaCl', 'simple'),
-            ('NaF', 'simple'),
-            ('NH4Cl', 'raw_material'),
-            ('Na0·667Mn0·667Ni0·333O2', 'synthetic'),
-            ('NM00', 'is_likely_abbreviation'),
-            ('NCMTV', 'is_likely_abbreviation'),
-            ('NCF', 'is_likely_abbreviation'),
-            ('EC300J', 'other'),
-            ('0-NMTO', 'is_likely_abbreviation'),
-            ('NaMnNiCuFeTiOF', 'is_likely_abbreviation'),
-            ('Mn-Na-Mn', 'synthetic'),
-            ('P2/O3-NMT3', 'is_likely_abbreviation'),
-            ('Ti-doped-NNMOF', 'is_likely_abbreviation'),
-        ]
-        for t3 in test3:
-            self.assertEqual(self.ner.prompt_tag(t3[0]), t3[1])
+        self.assertEqual(self.ner.prompt_tag('Na2CO3'), 'simple')
+        self.assertEqual(self.ner.prompt_tag('Na2CO3R'), 'raw_material')
+        self.assertEqual(self.ner.prompt_tag('NaCl'), 'simple')
+        self.assertEqual(self.ner.prompt_tag('NaF'), 'simple')
+        self.assertEqual(self.ner.prompt_tag('NH4Cl'), 'raw_material')
+        self.assertEqual(self.ner.prompt_tag('Na0·667Mn0·667Ni0·333O2'), 'synthetic')
+        self.assertEqual(self.ner.prompt_tag('NM00'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('NCMTV'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('NCF'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('EC300J'), 'other')
+        self.assertEqual(self.ner.prompt_tag('PC'), 'other')
+        self.assertEqual(self.ner.prompt_tag('PO4'), 'polyatomic_ions')
+        self.assertEqual(self.ner.prompt_tag('Na-ion'), 'other')
+        self.assertEqual(self.ner.prompt_tag('Na-N532'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('Nalgene'), 'other')
+        self.assertEqual(self.ner.prompt_tag('No.166'), 'other')
+        self.assertEqual(self.ner.prompt_tag('No.54-0894'), 'other')
+        self.assertEqual(self.ner.prompt_tag('0-NMTO'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('NaMnNiCuFeTiOF'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('Mn-Na-Mn'), 'irregular_shape')
+        self.assertEqual(self.ner.prompt_tag('P2/O3-NMT3'), 'is_likely_abbreviation')
+        self.assertEqual(self.ner.prompt_tag('Ti-doped-NNMOF'), 'is_likely_abbreviation')
