@@ -141,6 +141,8 @@ class CNer:
             return 'element'
         elif cem in ELEMENTS_NAMES_UL:
             return 'element_name'
+        elif cem in POLYATOMIC_IONS:
+            return 'polyatomic_ions'
         elif cem in SIMPLE_COMPOUND:
             return 'simple'
         elif self.is_word(cem):
@@ -164,20 +166,21 @@ class CNer:
         if normalize:
             cem = self.normalized_compound_formula(cem)
         shape = word_shape(cem)
-        likely_abb = True if 'XXX' in shape else False
+        likely_abb = any_func(shape, ABB_SHAPE)
         if not likely_abb and (shape.startswith('d') or 'b.b' in shape):
             return 'other'
+        elif 'Xx-Xx-Xx' in shape:  # Nax(Cu-Fe-Mn)O2
+            return 'irregular_shape'
         parse_ = self.is_compound_formula(cem)
-        if parse_ and parse_[1]:
+        if not likely_abb and parse_ and parse_[1]:
             # NaCoMnO   NaMnNiCuFeTiOF
             if len([i for i in parse_[1] if i in TRANSITION_ME]) >= 2 and parse_[0] == ''.join(
                     parse_[1]):
                 return 'is_likely_abbreviation'
             # 'Na/Li/Ni/Mn/Co'
-            elif set(cem.split('/')).difference(ELEMENTS):
+            elif not set(cem.split('/')).difference(ELEMENTS):
                 return 'synthetic'
-            # Nax(Cu-Fe-Mn)O2
-            elif 'Xx-Xx-Xx' in shape or all(len(i) <= 2 for i in cem.split('-')):
+            elif all(len(i) <= 2 for i in cem.split('-')):
                 return 'irregular_shape'
             elif '/' not in cem:
                 return 'synthetic'
@@ -185,8 +188,6 @@ class CNer:
                 return 'other'
         elif un_chem_abbreviation.search(cem):
             return 'other'
-        elif '-' in cem and 'Xx-Xx-Xx' in shape:
-            return 'irregular_shape'
         elif any_func(cem, SOLVENT_NAMES):
             return 'solvent_names'
         elif any_func(cem, RAW_MATERIAL):
@@ -195,8 +196,6 @@ class CNer:
             return 'apparatus'
         elif cem in OTHER or any_func(cem, OTHER_IN) or pattern.match(cem):
             return 'other'
-
-        likely_abb_ = any_func(shape, ABB_SHAPE)
 
         if not likely_abb:
             try:
@@ -214,7 +213,7 @@ class CNer:
                     return 'raw_material'
             except (ValueError, AttributeError, KeyError):
                 ele_result = {}
-                if self.prompt_element in cem and not likely_abb_:
+                if self.prompt_element in cem and not likely_abb:
                     ele_result = __generalized_elements(cem)
                     if len(ele_result) > 2 and 'O' in ele_result:
                         if 'M' in ele_result:
@@ -227,11 +226,11 @@ class CNer:
                 if 'Xx*Xx' in shape:
                     return 'other'
                 elif self.prompt_element in cem or self.prompt_element[0] in cem:
-                    if not ele_result or likely_abb_:
+                    if not ele_result or likely_abb:
                         return 'is_likely_abbreviation'
                     else:
                         return 'raw_material'
-        return 'is_likely_abbreviation' if likely_abb_ or shape in ['XX', 'Xd.d'] and not any_func(cem, ['=',
+        return 'is_likely_abbreviation' if likely_abb or shape in ['XX', 'Xd.d'] and not any_func(cem, ['=',
                                                                                                          ',']) else 'other'
 
     @staticmethod

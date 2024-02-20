@@ -48,7 +48,7 @@ def end_parentheses(cem: str):
 
 @lru_cache(None)
 def polyatomic_ions(string):
-    return any(_ == string for _ in set(POLYATOMIC_IONS))
+    return any(_ == string for _ in POLYATOMIC_IONS)
 
 
 @lru_cache(None)
