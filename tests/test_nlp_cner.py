@@ -66,6 +66,7 @@ class TestCNer(unittest.TestCase):
         self.assertEqual(self.ner.prompt_tag('NCF'), 'is_likely_abbreviation')
         self.assertEqual(self.ner.prompt_tag('EC300J'), 'other')
         self.assertEqual(self.ner.prompt_tag('PC'), 'other')
+        self.assertEqual(self.ner.prompt_tag('C4H4O6KNa·4H2O'), 'synthetic')
         self.assertEqual(self.ner.prompt_tag('PO4'), 'polyatomic_ions')
         self.assertEqual(self.ner.prompt_tag('Na-ion'), 'other')
         self.assertEqual(self.ner.prompt_tag('Na-N532'), 'is_likely_abbreviation')
