@@ -135,7 +135,7 @@ SUB = [
     (r'third(?=\s?cycle)', '3'),
     (r'fiftieth\b', '50'),
     #  Scientific notation
-    (r'(\d)\s?,\s?(0\d+ [c°])', r'\1\2'),
+    (r'(\d)\s?,\s?(0\d+\s?[c°])', r'\1\2'),
     (r'(?<!-|\d)(\d),(\d+\s?mA)', r'\1\2'),
     #  phase prefix
     (r'([PO][23]-)type (?=Na)', r'\1'),
