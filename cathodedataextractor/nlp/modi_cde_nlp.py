@@ -6,7 +6,7 @@ nlp/cem
 """
 # Split on plus surrounded by any letter or number provided no brackets
 change_cem = cem.SPECIALS.index('^([^\(\)]+\w)\+(\w[^\(\)]+)$')
-cem.SPECIALS[change_cem] = '^([^\(\)]+\w)\+([^xyx][^\(\)]+)'
+cem.SPECIALS[change_cem] = '^([^()]+ \w)\+([^xyx][^()]+)'
 
 """
 nlp/tokenize

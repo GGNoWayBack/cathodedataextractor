@@ -6,7 +6,7 @@ __all__ = ['end_parentheses', 'bracket_level']
 
 OPEN, CLOSE = {'(', '[', '{'}, {')', ']', '}'}
 OP_CL = {'(': ')', '[': ']', '{': '}'}
-MIN_LENGTH = 8  # The threshold determines whether the return value is meaningful
+MIN_LENGTH = 11  # The threshold determines whether the return value is meaningful
 
 
 @lru_cache(None)

@@ -82,16 +82,34 @@ class CNer:
         # Remove valence
         def remove_valence(cem, sign='+', start=0):
             idx = cem.find(sign, start)
-            if idx > -1:
-                window = cem[idx - 1: idx + 2]
-                if window and window.index(sign):
-                    if window[-1] in ['x', 'y', 'z', 'δ']:
-                        return remove_valence(cem, start=idx + 2)
-                    elif window[0].isdigit():
-                        return remove_valence(cem[:idx - 1] + cem[idx + 1:], start=idx - 1)
-                    else:
-                        return remove_valence(cem[:idx] + cem[idx + 1:], start=idx)
-            return cem
+            if idx == -1:
+                oxygen_idx = cem.find("O", start)
+                while oxygen_idx > -1:
+                    valence_l = valence_r = None
+                    for i in range(oxygen_idx + 1, len(cem)):
+                        if valence_l is None and cem[i].isdigit():  # 1
+                            valence_l = i
+                        elif cem[i] == "-":  # 2
+                            valence_r = i
+                        elif cem[i] == " ":  # 1 2 3
+                            continue
+                        elif valence_r is not None and cem[i].isdigit():  # 3
+                            valence_r = i
+                            break
+                        else:
+                            valence_r = None
+                            break
+                    if valence_l and valence_r:
+                        cem = cem[:valence_l] + cem[valence_r:]
+                    oxygen_idx = cem.find("O", oxygen_idx + 1)
+                return cem
+            window = cem[idx - 1: idx + 2]
+            if window[-1] in VAR:
+                return remove_valence(cem, start=idx + 2)
+            elif window[0].isdigit():
+                return remove_valence(cem[:idx - 1] + cem[idx + 1:], start=idx - 1)
+            else:
+                return remove_valence(cem[:idx] + cem[idx + 1:], start=idx)
 
         cem = remove_valence(cem)
 
