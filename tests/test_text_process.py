@@ -216,7 +216,7 @@ class TestBatteriesTextProcessor(unittest.TestCase):
                 'confirmed in the Ti-substituted Na((Mn0.4Fe0.3Ni0.3)1-xTix)O2 (for x = 0, '
                 '167 mAhg-1; x = 0.1, 151 mAhg-1 at 24 mAg-1) Nominal Na0.6Li0.2Mn0.8O2 with '
                 'the layered P3 structure (s.g. R3m) showed XPS evidence of holes in the O-2p '
-                'bands on removal of Na+ ions. A large voltage plateau at 4.1V versus Na+/Na '
+                'bands on removal of Na+ ions. A large voltage plateau at 4.1V versus Na/Na '
                 'faded significantly over 50 cycles although the capacity in the range 20 ≤ V '
                 '< 4.5V remained unchanged. Oxidation of the O-2p bands is not reversible. At '
                 'a rate of 0.5C, NMCO_750 exhibited a high gravimetric capacity of 84mAhg-1, '
