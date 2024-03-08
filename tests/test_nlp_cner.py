@@ -28,6 +28,7 @@ class TestCNer(unittest.TestCase):
             ('Na0.71Co1-   xZnxO2', 'Na0.71Co1-xZnxO2'),
             ('O3-NaTi0.1Cr0.45Fe0.45O2-2', 'O3-NaTi0.1Cr0.45Fe0.45O2'),
             ('P2-Na0.67 (Mg2+ 0.33Ru4+ 0.67)O2- 2', 'P2-Na0.67Mg0.33Ru0.67O2'),
+            ('P2-Na2/3Mg(II)1/4Mn(IV)7/12Co(III)1/6O2', 'P2-Na0.67Mg0.25Mn0.58Co0.17O2'),
             ('Na3Fe2PO4(P2O7)', 'Na3Fe2P3O11'),
             ('NaH2PO2·H2O,>99%', 'NaH2PO2·H2O,>99%'),
             ('Na3PS4(<CR>)', 'Na3PS4'),

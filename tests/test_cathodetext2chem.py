@@ -5,8 +5,7 @@ import unittest
 
 from cathodedataextractor.cathodetext2chem import (
     CathodeParserPipelineBuilder,
-    CathodeRegExParser,
-    CathodeStoichiometricVariablesProcessing
+    CathodeRegExParser
 )
 from tests.resources import TEST_PATH
 from text2chem.preprocessing_tools.additives_processing import AdditivesProcessing
@@ -14,6 +13,8 @@ from text2chem.preprocessing_tools.chemical_name_processing import ChemicalNameP
 from text2chem.preprocessing_tools.phase_processing import PhaseProcessing
 from text2chem.preprocessing_tools.mixture_processing import MixtureProcessing
 from text2chem.postprocessing_tools.substitute_additives import SubstituteAdditives
+from text2chem.postprocessing_tools.element_variables_processing import ElementVariablesProcessing
+from text2chem.postprocessing_tools.stoichiometric_variables_processing import StoichiometricVariablesProcessing
 
 mp = CathodeParserPipelineBuilder() \
     .add_preprocessing(AdditivesProcessing) \
@@ -21,7 +22,8 @@ mp = CathodeParserPipelineBuilder() \
     .add_preprocessing(PhaseProcessing) \
     .add_preprocessing(MixtureProcessing) \
     .add_postprocessing(SubstituteAdditives) \
-    .add_postprocessing(CathodeStoichiometricVariablesProcessing) \
+    .add_postprocessing(ElementVariablesProcessing) \
+    .add_postprocessing(StoichiometricVariablesProcessing) \
     .set_regex_parser(CathodeRegExParser) \
     .build()
 
