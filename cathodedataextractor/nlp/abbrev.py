@@ -341,8 +341,8 @@ class AbbreviationDetection:
                         threshold_value -= min(abb_c[abb_k], cem_c.get(abb_k, 0))
                     else:  # The uppercase character in an abbreviation must be present in the full name,
                         # and if not must be at the end and longer than 1.
-                        # ： 'FMR', 'Na0.67Mn0.5Fe0.5O2'  'NFMCu-0', 'NaMn0.6Fe0.4O2'
-                        if (n == 1) or (ind + end_threshold_value < n):
+                        # ： 'FMR', 'Na0.67Mn0.5Fe0.5O2'  'NFMCu-0'  '0-NFMCu', 'NaMn0.6Fe0.4O2'
+                        if (n == 1) or (threshold_value and ind + end_threshold_value < n):
                             return False
 
             return True if threshold_value <= 1 else False

@@ -15,12 +15,12 @@ from chemdataextractor.text import word_shape, like_number, QUOTES
 
 from cathodedataextractor.cathodetext2chem import (
     CathodeParserPipelineBuilder,
-    CathodeRegExParser,
-    CathodeStoichiometricVariablesProcessing
+    CathodeRegExParser
 )
 
 from text2chem.preprocessing_tools.chemical_name_processing import ChemicalNameProcessing
 from text2chem.postprocessing_tools.element_variables_processing import ElementVariablesProcessing
+from text2chem.postprocessing_tools.stoichiometric_variables_processing import StoichiometricVariablesProcessing
 
 from ..parse import *
 from ..utils import if_num_dot, any_func
@@ -29,7 +29,7 @@ log = logging.getLogger(__name__)
 mp = CathodeParserPipelineBuilder() \
     .add_preprocessing(ChemicalNameProcessing) \
     .add_postprocessing(ElementVariablesProcessing) \
-    .add_postprocessing(CathodeStoichiometricVariablesProcessing) \
+    .add_postprocessing(StoichiometricVariablesProcessing) \
     .set_regex_parser(CathodeRegExParser) \
     .build()
 

@@ -98,7 +98,7 @@ ABB_SHAPE = ['XXdd', 'XXX', 'XXd', 'XxXX', 'Xddd']
 
 NUMBER_REGEX = r'\d++[\d. ]*+'
 
-re_phase_prefix = re.compile(r"^([A-Za-z" + ''.join(GREEK_CHARS) + r"][0-9]{0,1}|Air|Oxy|[/PO\d and-]+)\-[A-Z]\.*")
+re_phase_prefix = re.compile(r"^([A-Za-z" + ''.join(GREEK_CHARS) + r"][0-9]{0,1}|Air|Oxy|(?=P|O)[/PO\d and-]+)\-[A-Z]\.*")
 
 # html、xml Fig tag
 fig_pattern = re.compile(r'fig', re.I)
