@@ -111,3 +111,7 @@ class CathodeRegExParser(RegExParser):
                 if c not in fvalues and c in self._list_of_elements:
                     fvalues.append(c)
         return fvalues
+
+    @property
+    def re_stoichiometric_values(self):
+        return r"\s*=\s*([-]{0,1}[0-9.,/and\s]+)[\s)\],;]"
