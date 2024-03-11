@@ -82,6 +82,8 @@ class CNer:
         # Remove valence
         def remove_valence(cem, sign='+', start=0):
             idx = cem.find(sign, start)
+            if idx == 0:
+                return remove_valence(cem, start=start+1)
             if idx == -1:
                 oxygen_idx = cem.find("O", start)
                 while oxygen_idx > -1:
