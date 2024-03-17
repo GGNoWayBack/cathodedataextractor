@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 long_description = open('README.md', encoding="utf8").read()
 setup(
     name='cathodedataextractor',
-    version='0.0.3',
+    version='0.0.4',
     description='A document-level information extraction pipeline for layered cathode materials for sodium-ion batteries.',
     long_description=long_description,
     long_description_content_type='text/markdown',
