@@ -178,7 +178,7 @@ ignore_suffix_pattern = re.compile(r'(?i:-(hydro))')
 add_infor_pattern = re.compile(r'\s?\(((?>[^()]|(?R))*)\)(?!\w)')
 
 # named as marked as noted as
-abb_named_pattern = re.compile('name(?:d|ly)|marked|noted|labeled|denoted|identified|referred|abbreviated')
+abb_named_pattern = re.compile('name(?:d|ly)|marked|noted|labeled|denoted|identified|referred|abbreviated|designated')
 
 # Temperature time
 t_c_pattern = re.compile(r'(?P<T>\d{2,3}+[-/(\d, airtond)]*°C(?![\s/]*min[-1]*))'

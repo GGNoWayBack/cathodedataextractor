@@ -41,8 +41,13 @@ class TestAbbreviationDetection(unittest.TestCase):
                                                                                       ('LT-NFM2',
                                                                                        'Na0.6Mn0.94Fe0.06O2')]),
 
-                 ("... Na3V2P3O12 and Na3V2P2O8F3 (NVPF) <CR>.", [('NVPF', 'Na3V2P2O8F3')])
-
+                 ("... Na3V2P3O12 and Na3V2P2O8F3 (NVPF) <CR>.", [('NVPF', 'Na3V2P2O8F3')]),
+                 ("All the samples are hereafter designated as NFM for Na0.67Fe0.5Mn0.5O2, NFMC0.2 for "
+                  "Na0.67Fe0.4Mn0.4Co0.2O2, NFMC0.4 for Na0.67Fe0.3Mn0.3Co0.4O2, and NFMC0.5 for "
+                  "Na0.67Fe0.25Mn0.25Co0.5O2.", [('NFM', 'Na0.67Mn0.5Fe0.5O2'),
+                                                 ('NFMC0.2', 'Na0.67Mn0.4Fe0.4Co0.2O2'),
+                                                 ('NFMC0.4', 'Na0.67Mn0.3Fe0.3Co0.4O2'),
+                                                 ('NFMC0.5', 'Na0.67Mn0.25Fe0.25Co0.5O2')])
                  ]
         for exam in exams:
             bp = BatteriesTextProcessor(exam[0], special_normal=True)

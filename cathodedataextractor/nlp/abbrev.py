@@ -563,7 +563,7 @@ class AbbreviationDetection:
                                 if abb_named_pattern.search(find_cem.text):
                                     pair = self._seq2token_ners(find_cem.text.split())
                                     if pair:
-                                        if pair[1] == pair[0]:
+                                        if len(pair[1]) == len(pair[0]):
                                             break_fg = True
                                             abb.extend(pair[0])
                                             synthetic.extend(pair[1])
