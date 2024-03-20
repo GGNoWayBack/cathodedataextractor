@@ -217,7 +217,7 @@ class TagClassificationPar2Text:
                         res_text += '<CR>' + con[1:]
                         cr_fg = False
                         pre_iscr = False
-        return res_text.replace('\n', ' ')
+        return res_text.replace('\n', '')
 
     def _whether_multiple_par(self, oth):
         """
