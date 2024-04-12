@@ -69,6 +69,16 @@ You can either report an issue on GitHub or contact me directly.
 Try [gouyx@mail2.sysu.edu.cn](mailto:gouyx@mail2.sysu.edu.cn).
 
 
+## Citing 
+
+------------
+If the source code turns out to be helpful to your research, please cite the following work:  
+
+[![paper](https://img.shields.io/badge/doi-10.1038%2Fs41597--024--03196--1-blue)](https://doi.org/10.1038/s41597-024-03196-1)
+
+> Gou, Y., Zhang, Y., Zhu, J. et al. A document-level information 
+> extraction pipeline for layered cathode materials for sodium-ion batteries. Sci Data 11, 372 (2024).
+
 
 
 

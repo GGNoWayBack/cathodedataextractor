@@ -97,12 +97,11 @@ class PropertyParse:
     def _exp_results(self):
 
         # The position corresponding to the maximum temperature.
-        if self.temperature:
-            if len(self.temperature) == len(self.time):
-                max_ = max(self.temperature)
-                ind_ = self.temperature.index(max_)
-                self._temperature = max_
-                self._time = self.time[ind_]
+        if self.temperature and len(self.temperature) == len(self.time):
+            max_ = max(self.temperature)
+            ind_ = self.temperature.index(max_)
+            self._temperature = max_
+            self._time = self.time[ind_]
 
     def property_extraction(self, paragraph: LText):
         """
